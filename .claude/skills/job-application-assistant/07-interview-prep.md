@@ -35,6 +35,68 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 <!-- Add more STAR examples as needed. Aim for 4-6 covering different competencies. -->
 
+## STAR Candidates (Complete Manually)
+
+### OpenShift cluster deployments
+**Source:** CV - hSenid Mobile Solutions, Trainee DevOps / Cloud Engineer and Associate DevOps / Cloud Engineer
+**What happened:** Provisioned and configured single-node and multi-node OpenShift clusters, including on-premises and K3s environments, for R&D and client deployments.
+**Why it matters:** Useful for questions about Kubernetes/OpenShift, infrastructure delivery, client-facing technical work, and learning complex systems.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### CI/CD and Ansible automation
+**Source:** CV - hSenid Mobile Solutions, Associate DevOps / Cloud Engineer
+**What happened:** Implemented CI/CD pipelines and Ansible automation that reduced patching and migration execution times from hours to seconds.
+**Why it matters:** Useful for questions about automation, measurable impact, improving team workflows, and DevOps engineering.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Production version upgrades
+**Source:** CV - hSenid Mobile Solutions, DevOps / Systems Engineer
+**What happened:** Implemented major version upgrades to production systems with testing, procedure documentation, and impact analysis.
+**Why it matters:** Useful for questions about risk management, production ownership, release management, and minimizing downtime.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Monitoring and observability implementation
+**Source:** CV - hSenid Mobile Solutions, Trainee DevOps / Cloud Engineer
+**What happened:** Implemented Prometheus, Grafana, and exporters for Node, MySQL, and YugabyteDB, plus automated health checks and log management.
+**Why it matters:** Useful for questions about reliability, troubleshooting, operational visibility, and incident prevention.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Backup and disaster recovery automation
+**Source:** CV - hSenid Mobile Solutions, Trainee DevOps / Cloud Engineer
+**What happened:** Automated backups for clusters, databases, and namespaces with Velero and MinIO, and formulated disaster recovery strategies.
+**Why it matters:** Useful for questions about resilience, business continuity, cloud-native operations, and ownership of critical systems.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Client technical demos and feasibility studies
+**Source:** CV - hSenid Mobile Solutions, Associate DevOps / Cloud Engineer
+**What happened:** Led feasibility studies and technical demos, translating requirements into effort estimations for client objectives.
+**Why it matters:** Useful for questions about stakeholder communication, technical consulting, requirements analysis, and cross-functional work.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
 ## Common Tough Questions
 
 ### "Why did you leave [previous company]?"

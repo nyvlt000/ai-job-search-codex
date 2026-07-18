@@ -112,6 +112,12 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 **For [YOUR_SECONDARY_ROLE_TYPE] roles:**
 > [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
 
+**For DevOps / Cloud Engineer roles:**
+> DevOps / Cloud Engineer and Computer Science graduate with four years of experience across Linux systems, OpenShift/Kubernetes, CI/CD, automation, monitoring, and production operations. Experienced in managing releases, troubleshooting incidents, automating infrastructure tasks with Bash and Ansible, and supporting resilient cloud-native platforms with Prometheus, Grafana, Ceph, Velero, and MinIO.
+
+**For Platform / DevSecOps-adjacent roles:**
+> DevOps / Cloud Engineer with hands-on experience in OpenShift, Kubernetes, Linux, CI/CD, infrastructure automation, monitoring, network policies, and production hardening. Brings security-adjacent platform experience through implementation audits, secure access controls, cloud security rules, system documentation, and high-availability operations, with a strong base for roles that combine DevOps delivery with vulnerability remediation and compliance support.
+
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.
 
