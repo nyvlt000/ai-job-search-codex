@@ -2,6 +2,8 @@
 framework_version: 1.0.0
 ---
 
+<!-- 2026-07-18: Merged the Codex command-skills branch into master and removed the merged branch. -->
+
 # Agent Guidelines: AI Job Search
 
 This workspace is structured to manage job search activities, scraper tools, CVs, cover letters, and interview preparation.

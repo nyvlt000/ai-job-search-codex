@@ -20,9 +20,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** DevOps, cloud infrastructure, OpenShift, Kubernetes, Docker, Linux/RHEL, CI/CD, Bash automation, Ansible, monitoring with Prometheus/Grafana, high-availability operations, production troubleshooting, release management.
+**Moderate match areas:** Backend development, AWS, GCP, GitOps, Ceph/Rook storage, Velero/MinIO backups, network policies, ISO 27001:2022 internal audits, implementation audits, web app security, OSINT, customer technical demos.
+**Weak match areas:** Dedicated product security, formal vulnerability management ownership, FedRAMP, SOC2, full-time application security, advanced compliance reporting.
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -34,9 +34,9 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** DevOps engineering, cloud platform engineering, OpenShift/Kubernetes operations, production release support, infrastructure automation, monitoring/observability, backup and disaster recovery.
+**Moderate:** DevSecOps-adjacent work, backend development, client-facing technical demos, ISO 27001:2022 internal audits, implementation audits, cloud security rules, network policy management.
+**Entry-level:** Formal application security, product security, vulnerability management programs, compliance framework ownership.
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -67,19 +67,17 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Target DevOps Engineer, Site Reliability Engineer, Platform Engineer, Systems Engineer, and Operations Engineer roles. Current CV direction also supports cloud engineering and DevSecOps-adjacent opportunities.
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
-- Non-task factors: leadership style, department culture, company values, degree of autonomy
+- Tasks that energize: Not explicitly specified. Likely candidates from CV: building systems, Linux/cloud infrastructure, automation, troubleshooting, Kubernetes/OpenShift, monitoring, production reliability.
+- Tasks that drain: Not specified.
+- Non-task factors: Not specified.
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Security**: Not specified.
+- **Flexibility**: Colombo/Kandy, Sri Lanka-based; remote-first and hybrid second preference. Kandy is preferred, followed by Colombo.
+- **Professional development**: Current CV points toward cloud-native infrastructure, DevOps, platform engineering, and security-adjacent growth.
 
 ### 6. Salary Benchmark (Optional)
 
