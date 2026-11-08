@@ -1,0 +1,91 @@
+name: Daily job digest (backup)
+
+on:
+  schedule:
+    # ~09:30 CET winter (08:30 UTC). DST-aware gate below keeps true 09:30 Berlin intent loose;
+    # primary is the PC at 08:00. This backup only emails if heartbeat is missing.
+    - cron: "30 7 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Run even if heartbeat exists (for testing)"
+        required: false
+        default: "false"
+
+jobs:
+  digest-backup:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    env:
+      TZ: Europe/Berlin
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      RESEND_FROM: ${{ secrets.RESEND_FROM }}
+      DIGEST_TO: ${{ secrets.DIGEST_TO }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch heartbeat branch
+        continue-on-error: true
+        run: |
+          git fetch origin digest-heartbeat:digest-heartbeat || true
+
+      - name: Skip if PC heartbeat present
+        id: gate
+        run: |
+          DAY=$(TZ=Europe/Berlin date +%F)
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" = "true" ]; then
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "Forced run via workflow_dispatch"
+            exit 0
+          fi
+          if git show digest-heartbeat:digest_runs/${DAY}.ok >/dev/null 2>&1; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Heartbeat found for $DAY — skipping backup email"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "No heartbeat for $DAY — running backup digest"
+          fi
+
+      - name: Setup Bun
+        if: steps.gate.outputs.skip != 'true'
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Python
+        if: steps.gate.outputs.skip != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python deps
+        if: steps.gate.outputs.skip != 'true'
+        run: pip install pyyaml
+
+      - name: Install portal CLI deps
+        if: steps.gate.outputs.skip != 'true'
+        run: |
+          (cd .agents/skills/linkedin-search/cli && bun install)
+          (cd .agents/skills/jobs-ch-search/cli && bun install)
+
+      - name: Run digest (backup)
+        if: steps.gate.outputs.skip != 'true'
+        run: python tools/daily_digest.py --send --source backup
+
+      - name: Upload digest artifacts
+        if: always() && steps.gate.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: digest-${{ steps.gate.outputs.day }}
+          path: |
+            digests/
+            digest_runs/
+          if-no-files-found: ignore
+          retention-days: 14

@@ -5,7 +5,7 @@ framework_version: 1.0.0
 # Behavioral Profile
 
 ## Overview
-No formal behavioral assessment is currently recorded. The observations below are inferred from Gajan Rajah's CV and should be reviewed before relying on them in applications.
+No formal behavioral assessment is currently recorded. The observations below are inferred from Michal Dub's CV and should be reviewed before relying on them in applications.
 
 ## Core Behavioral Drives
 
@@ -14,42 +14,44 @@ No formal behavioral assessment is currently recorded. The observations below ar
 | Formal assessment not available | Not assessed | Add PI, DISC, Myers-Briggs, StrengthsFinder, or self-assessment results if available. |
 
 ## Strongest Behaviors
-- **Systems-oriented problem solving:** *[Inferred from CV - review before relying on this]* Repeated work with OpenShift, Kubernetes, high-availability systems, monitoring, backups, and disaster recovery suggests comfort with complex infrastructure.
-- **Troubleshooting and follow-through:** *[Inferred from CV - review before relying on this]* Production release support, incident resolution, upgrades, testing, and remediation work suggest persistence through operational issues.
-- **Documentation-minded collaboration:** *[Inferred from CV - review before relying on this]* Multiple roles mention procedure documentation, system documentation, knowledge-transfer sessions, and event documentation.
-- **Client and stakeholder communication:** *[Inferred from CV - review before relying on this]* CV mentions POCs, technical demos, feasibility studies, internal teams, foreign clients, and effort estimation.
-- **Proactive learning and systems improvement:** *[Inferred from public LinkedIn recommendation - review before relying on this]* A recommendation describes independently experimenting, learning quickly, and improving systems without constant direction.
+- **End-to-end delivery ownership:** *[Inferred from CV - review before relying on this]* Repeated ownership of initiatives from RFP through global go-live (intranet, CCaaS migration, SIP rollout) suggests comfort with full project lifecycle accountability.
+- **Stakeholder and cross-country coordination:** *[Inferred from CV - review before relying on this]* Global programs spanning 30 countries (CCaaS) and 40+ sites (SIP), plus Straumann stakeholder management, suggest strong multi-party coordination.
+- **Engineering-informed project judgment:** *[Inferred from CV - review before relying on this]* Progression from UC systems engineer through UC engineering leadership into global project management suggests ability to bridge technical and delivery conversations.
+- **Team leadership:** *[Inferred from CV - review before relying on this]* Head of UC at Jobrad and global UC / voice engineering leadership at MSD indicate experience leading specialist teams.
+- **Customer-experience focus:** *[Inferred from CV - review before relying on this]* Contact-center transformation, conversational AI, and end-user UC experience work suggest orientation toward operational and customer outcomes, not only technology rollout.
 
 ## How You Work Best
-- *[Inferred from CV - review before relying on this]* Technical environments where infrastructure reliability, automation, and operational ownership matter.
-- *[Inferred from CV - review before relying on this]* Teams that value documentation, knowledge sharing, and clear procedures.
-- *[Inferred from CV - review before relying on this]* Roles with hands-on systems work, cloud-native platforms, troubleshooting, and room to improve automation.
+- *[Inferred from CV - review before relying on this]* Large-scale IT delivery environments with clear program ownership and measurable go-live outcomes.
+- *[Inferred from CV - review before relying on this]* Roles that combine project discipline with technical depth in collaboration, contact center, or workplace platforms.
+- *[Inferred from CV - review before relying on this]* Cross-functional settings with stakeholders across countries, vendors, and business units.
 
 ## Growth Areas (frame positively in applications)
-- **Formal compliance/security ownership:** The CV shows internal audit work aligned with ISO 27001:2022, alongside security hardening. It does not establish dedicated ownership of a full compliance program or frameworks such as SOC2 or FedRAMP; frame the experience accordingly.
-- **Dedicated application security/product security:** The CV lists web app security and OSINT, but does not show a full-time product security role. Frame around DevOps, container platforms, network policies, and operational security.
+- **Pure software engineering IC work:** The CV emphasizes project/program leadership and UC engineering leadership, not hands-on application development as a primary role. Frame engineering background as domain depth for PM roles.
+- **Languages beyond English:** English is evidenced; German, Czech, or other language levels are not stated on the CV. Do not invent proficiency claims.
+- **Formal product ownership:** Experience is project/program delivery and UC platforms; dedicated product-manager ownership is not established on the CV.
 
 ## Mapping to Job Posting Language
 
 When a job posting mentions these keywords, it is a **strong behavioral fit**:
-- Hands-on troubleshooting
-- Automation and process improvement
-- Documentation and runbooks
+- End-to-end project or program delivery
+- Stakeholder management
+- Digital transformation / cloud migration
+- Global rollouts
+- Contact center / customer experience transformation
 - Cross-functional coordination
-- Production support and high availability
-- Customer or stakeholder communication
+- Vendor / RFP management
 
 When a job posting mentions these, flag as **potential friction** (not deal-breaker):
-- Heavy governance/compliance ownership without engineering work
-- Pure application security with little infrastructure or platform work
-- Roles requiring extensive formal audit leadership before technical ownership
+- Pure coding IC role with little delivery ownership
+- Heavy German-only workplace if language fit is unconfirmed
+- Roles requiring deep hands-on DevOps / Kubernetes platform engineering without PM framing
 
 ## Management Style Preferences
-- *[Inferred from CV - review before relying on this]* Likely fits managers who provide clear technical goals, trust hands-on ownership, and value documentation and follow-through.
-- *[Inferred from CV - review before relying on this]* May be less suited to vague roles with unclear ownership, limited technical depth, or little room to improve systems.
+- *[Inferred from CV - review before relying on this]* Likely fits organizations that value structured delivery, clear ownership from RFP to go-live, and leaders who can speak both business and technical language.
+- *[Inferred from CV - review before relying on this]* May be less suited to pure maintenance roles with no program ownership, or highly ambiguous roles without delivery accountability.
 
 ## Using This in Applications
-- **Cover letters:** Emphasize hands-on ownership, documentation, automation, production reliability, and ability to work with engineering/client stakeholders.
-- **CV:** Lead with OpenShift/Kubernetes, CI/CD, automation, monitoring, high availability, and security-adjacent infrastructure work.
-- **Interviews:** Prepare STAR examples around production upgrades, OpenShift deployments, automation, monitoring, disaster recovery, and client demos.
-- **Don't overstate:** Do not claim formal behavioral assessment results, dedicated product security ownership, or direct FedRAMP/SOC2 ownership unless confirmed elsewhere.
+- **Cover letters:** Emphasize global delivery from RFP to go-live, stakeholder management, digital transformation, and engineering-backed judgment in UC / contact-center domains.
+- **CV:** Lead with project/program management, cloud migration, intranet/workplace, CCaaS, and UC leadership.
+- **Interviews:** Prepare STAR examples around the Straumann intranet rollout, CCaaS migration across 30 countries, and MSD SIP infrastructure across 40+ sites.
+- **Don't overstate:** Do not claim formal behavioral assessment results, undocumented language proficiency, or hands-on DevOps/Kubernetes expertise.

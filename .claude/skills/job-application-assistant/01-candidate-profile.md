@@ -5,143 +5,112 @@ framework_version: 1.0.0
 # Candidate Profile
 
 ## Identity
-- **Name:** Gajan Rajah
-- **Location:** Colombo/Kandy, Sri Lanka
-- **Phone:** (+94) 071 427 6844
-- **Email:** gajanrajah@protonmail.com
-- **LinkedIn:** Listed in CV as "LinkedIn Profile" (URL not visible in extracted text)
-- **GitHub:** https://github.com/trikto
-- **GitLab:** https://gitlab.com/trikto
-- **Medium:** https://trikto.medium.com
-- **TryHackMe:** https://tryhackme.com/p/trikto
-- **Languages:** Not specified in CV
-- **Languages (public LinkedIn profile):** English (full professional proficiency), Tamil (native/bilingual proficiency), Sinhala (limited working proficiency).
-- **Status:** Not specified in CV
-- **Constraints:** Colombo/Kandy, Sri Lanka-based. Remote-first; hybrid roles are second preference. Kandy is the preferred location, followed by Colombo.
+- **Name:** Michal Dub
+- **Location:** Freiburg im Breisgau, Germany
+- **Phone:** +49 173 621 6559
+- **Email:** md@michaldub.com
+- **LinkedIn:** https://www.linkedin.com/in/michal-dub-007
+- **Languages:** English evidenced by CV language and prior English teaching role; other languages not specified on CV
+- **Status:** Employed — Global Project Manager at Straumann Group
+- **Constraints:** Based in Freiburg im Breisgau. Search focus Freiburg and Basel. Hybrid and remote acceptable. On-site far outside the Freiburg/Basel corridor without remote is a deal-breaker.
 
 ## Career Preferences
-- **Target roles:** DevOps Engineer, Site Reliability Engineer, Platform Engineer, Systems Engineer, Operations Engineer.
-- **Work arrangement:** Remote-first; hybrid second preference.
-- **Location priority:** Kandy first, Colombo second.
+- **Target roles (primary):** Project Manager, Program Manager, IT Project Manager, Digital Transformation Project Manager.
+- **Target roles (secondary):** Unified Communications leadership, collaboration / Teams roles, contact-center engineering or UC leadership.
+- **Work arrangement:** Hybrid Freiburg/Basel preferred; remote acceptable.
+- **Location priority:** Freiburg first, Basel second; remote with DE/CH presence acceptable.
 
 ## Profile
-DevOps / Cloud Engineer and Computer Science graduate with four years of industry experience. Background spans cloud infrastructure, Linux systems, OpenShift/Kubernetes, CI/CD, automation, monitoring, production releases, and high-availability operations.
+Results-driven Project Manager with an engineering background and more than 10 years of experience on large-scale IT projects. Skilled in optimizing processes, enhancing customer experiences, and driving operational efficiency. Demonstrated ability to deliver large projects and initiatives within timelines and budgets. Background spans global project/program delivery, cloud migration, digital workplace/intranet, CCaaS and contact-center transformation, and unified communications engineering leadership.
 
 ## Education
 
 | Degree | Period | Institution | Key Topics |
 |--------|--------|-------------|------------|
-| BSc in Computer Science | 2022-2025 | University of Colombo School of Computing | Computer science, software engineering, cloud and DevOps projects |
-| G.C.E. Advanced Level, Physical Science | 2018-2020 | Lyceum International School, Nuwara Eliya | ICT A, Mathematics B, Physics C, Z-score 1.7370 |
-| G.C.E. Ordinary Level | 2004-2017 | Highlevel International School, Hatton | 8A, 1B |
+| Masters Degree - Computer Science | 2009 | Czech University of Life Sciences in Prague | Computer science |
 
 ## Professional Experience
 
-### DevOps / Systems Engineer - hSenid Mobile Solutions (Pvt) Ltd (April 2026 - Present)
-Colombo, Sri Lanka
-- Ensures proper functioning of systems including telco CPaaS products.
-- Incorporated AI agents into daily workflows, built tools to automate redundant tasks, and shared best practices with the team.
-- Conducted internal audits for ISO 27001:2022 compliance.
-- Led MongoDB 2-to-7 and MySQL 5-to-8 platform upgrades, including impact analysis, testing, and low-downtime rollout.
-- Updated system security policies to align with organizational and client requirements.
-- Troubleshoots incidents and supports high availability.
-- Updates release files and manages deployments for feature rollouts with minimal downtime.
-- Collaborates on architectural improvements and security hardening for distributed systems and cloud services.
-- Maintains system documentation for team collaboration.
-- Implements major version upgrades for production systems, including testing, procedure documentation, and impact analysis.
-- Manages network policies in telco products and OpenShift environments.
+### Global Project Manager - Straumann Group (November 2022 - Present)
+Switzerland/Germany
+- Responsible for global project delivery from the RFP phase to successful delivery
+- Project and program management
+- Cloud migration
+- Stakeholder management
+- Latest achievement: successful implementation of employee intranet platform for Straumann Group globally (audience of 12k+ employees)
+- Current assignment: global contact-center digital transformation and redefining customer journey leveraging conversational AI
 
-### Associate DevOps / Cloud Engineer - hSenid Mobile Solutions (Pvt) Ltd (November 2024 - March 2026)
-Colombo, Sri Lanka
-- Managed production releases and resolved critical issues through UAT coordination and troubleshooting.
-- Architected internal cloud environments using OpenShift, optimizing VM provisioning, resource management, and resilience.
-- Implemented CI/CD pipelines and Ansible automation, reducing patching and migration execution times from hours to seconds.
-- Deployed resilient infrastructure with Ceph storage, multi-level backups, and network bonding.
-- Executed full-cycle OpenShift cluster deployments, including POCs and R&D for PostgreSQL and Elasticsearch modules.
-- Led feasibility studies and technical demos, translating requirements into effort estimates for client objectives.
+### Head of Unified Communications - Jobrad (October 2020 - October 2022)
+Freiburg im Breisgau
+- Team leadership
+- Project management
+- Defining cloud migration strategy to Microsoft 365 and Microsoft Teams
+- Responsible for the adoption of UC tools and building a truly Unified Communications environment
 
-### Trainee DevOps / Cloud Engineer - hSenid Mobile Solutions (Pvt) Ltd (February 2024 - October 2024)
-Internship, Colombo, Sri Lanka
-- Provisioned and configured single-node and multi-node OpenShift clusters, including on-premises and K3s environments.
-- Conducted POCs, demonstrations, and discussions with internal teams and foreign clients on cluster provisioning, resource allocation, and application modernization.
-- Managed VM lifecycle tasks, including VMware cold/warm migrations, DHCP networking, and storage provisioning with LVM, Local Storage, and Ceph.
-- Implemented monitoring and observability with Prometheus, Grafana, and exporters for Node, MySQL, and YugabyteDB.
-- Automated health checks, log management, and container image pruning with Bash scripts.
-- Automated backups for clusters, databases, and namespaces using Velero and MinIO, and formulated disaster recovery strategies.
-- Configured HAProxy, MITM servers, routes, and DNS entries to improve cluster performance and application access.
-- Collaborated with Red Hat support on troubleshooting, performance optimization, and high-availability setups.
-- Documented procedures, maintained version control, conducted knowledge-transfer sessions, and managed task estimations.
+### Associate Director - Unified Communications Engineering Lead - MSD (June 2019 - August 2020)
+Prague
+- Leading global team of UC engineers
+- Simplifying end-user experience for calling, conferencing, IM services and contact centers
+- Responsible for development and implementation of new technologies and platforms
+- Solving business use cases through speech recognition technology
 
-### Back End Developer - IntendAble (December 2023 - February 2024)
-Freelance
-- Wrote Python and Selenium scripts to automate tasks and scrape data.
-- Wrote JavaScript scripts to upload local data to an external cloud location.
-- Provisioned and configured EC2, RDS, VPC, ACL, and security rules for developer requirements.
+### Global Unified Communications Engineering Lead - MSD (November 2018 - June 2019)
+- Global design and development of MSD Unified Communication Network
+- Leading and managing global team of voice engineers
+- Implementing new technologies
 
-### Trainee DevOps Engineer - appiGo (April 2022 - October 2022)
-Remote
-- Managed and monitored EC2 instances and applied releases using Xshell and Postman.
-- Managed MySQL, PostgreSQL, and MongoDB databases, supporting data consistency and minimizing redundancy.
-- Managed configurations for e-commerce web stores using the admin web panel.
-- Updated and wrote documentation for configurations, troubleshooting, and debugging.
+### Senior Unified Communications Engineer - MSD Prague (November 2014 - November 2018)
+- Delivering new standards and global project implementations
+- Optimized end-user experience and customer services through contact-center technologies by providing business consulting and implementing the best solutions
 
-### Trainee DevOps Engineer - hSenid Mobile Solutions (Pvt) Ltd (June 2021 - April 2022)
-Internship, Colombo, Sri Lanka
-- Managed and monitored EC2 instances and applied releases using Xshell and Postman.
-- Managed MySQL, PostgreSQL, and MongoDB databases, supporting data consistency and minimizing redundancy.
-- Wrote Bash scripts to delete MongoDB message stores after storage thresholds were reached.
-- Wrote Bash scripts to audit EC2 instances for compliance with company standards.
-- Conducted implementation audits to verify EC2 configuration against standards and requirements.
-- Managed configurations for e-commerce web stores using the admin web panel.
-- Worked with and monitored high-availability systems with RHEL pcs clusters.
-- Conducted knowledge-transfer sessions for team members.
+### Systems Engineer - Unified Communications - ALEF NULA a.s. (January 2011 - November 2014)
+Prague
+- Systems Engineer - Unified Communications
 
-## Independent Projects
-- **Zelvo:** Expense-tracking application that scans and interprets receipts and bills. Stack: Nest.js, TypeScript, PaddleOCR, Gemini, Docker, NeonDB, Prisma, Auth0, GCP. Live URL: https://zelvoapp.com
-- **NuBred:** Agriculture and plant variety management system developed for a client. Stack: React, Node.js, TypeScript, Gemini, Docker, NeonDB, Prisma, Clerk, Hetzner. Live URL: https://nubred.com
-- **Homelab:** Personal homelab and website for learning and building systems. Stack includes Debian, Linux, GCP, Nginx, Cloudflare, Kubernetes, Prometheus, Grafana, GKE, Helm, GitLab, Docker, CI/CD, and Notion. Live URL: https://gajan.dev
-- **NoteMate:** AI-powered note-taking application for voice recording transcription, summarization, enhancement, and note management. Stack includes React, React Native, Spring Boot, MySQL, AWS DynamoDB, AWS RDS, AWS S3, GitLab, Firebase, Docker, CI/CD, Kubernetes, DigitalOcean, Flask, PyTorch, spaCy, OpenAI Whisper, Prometheus, Grafana, and Node Exporter. Source URL: https://gitlab.com/notemate-group-2/notemateserver
-- **Accommodate:** Platform for finding accommodations for undergraduates and working professionals. Stack: Figma, HTML, CSS, JavaScript, PHP, MySQL, TomTom Maps API, PayHere. Source URL: https://github.com/sanuthK/accommodate
+### English Teacher - High School Holečkova (September 2007 - June 2008)
+Prague, Czech Republic
+- Teaching children with hearing impairment (age 13-15)
 
-## Technical Skills
+## Key Projects
 
-### DevOps, Cloud & Infrastructure
-- Linux, RHEL, OpenShift, Kubernetes, Docker, VMware, AWS, GCP, Cloudflare, Helm, GitOps
-- CI/CD pipelines, Ansible, Bash automation, AI-agent workflow automation, release management, production troubleshooting
-- Rook, Ceph, Velero, MinIO, network bonding, HAProxy, DNS, routes, disaster recovery
+### Straumann Group Intranet (June 2025)
+- Global rollout launched June 10, 2025, with mobile and desktop access for all employees, including those without email addresses
+- AI-powered search and advanced analytics
+- Mobile-first experience via app "stmngrp"
+- Content tailored by region, role, and language with automated translations and local news prioritization
+- Social features, open groups, and intuitive navigation
+- Unified access to HR, legal, travel, and maintenance systems via a centralized Service Hub
+- Employee surveys guided design decisions (91% wanted better search, 81% tool integration, 55% personalized content)
 
-### Monitoring & Databases
-- Prometheus, Grafana, Node Exporter, MySQL, PostgreSQL, MongoDB, YugabyteDB, Elasticsearch
+### Contact Center Digital Transformation and Migration to Cloud (February 2023 - present)
+Straumann Group
+- End-to-end CCaaS (Contact Center as a Service) global cloud migration from RFP phase through transition of operations across 30 countries
+- Reduction in infrastructure costs and redefined customer experience leveraging chatbots and conversational AI
 
-### Programming & Backend
-- Python, Bash, JavaScript, TypeScript, Node.js, Express, Mongoose, Nest.js, Selenium
-- REST API endpoint design, request validation, and URL redirection *(GitHub - project-urlshortener and project-exercisetracker)*
-- Google Drive file-upload automation with Node.js *(GitHub - Google-Drive-Upload)*
+### Global SIP Infrastructure Implementation (January 2020 - February 2021)
+MSD
+- Global SIP infrastructure across 40+ international locations
+- Reduction in communication costs, services consolidation, and improved call quality and reliability
 
-### Web Development & Portfolio
-- Next.js App Router, Tailwind CSS, MDX content workflow, Vercel deployment workflow *(GitHub - portfolio)*
+## Technical / Professional Skills
 
-### Security-Adjacent Skills
-- Web app security, OSINT, network policies, infrastructure hardening, ISO 27001:2022 internal audits, implementation audits, security rules
+### Project & Program Delivery
+- Program management, project management, digital strategy, digital transformation management
+- Capacity planning, business case development, stakeholder management, presentation skills, analytical skills
 
-### Professional Interests
-- Tech enthusiast and CTF player.
+### Contact Center, UC & Collaboration
+- Contact center technologies, CCaaS, conversational AI / chatbots, speech recognition
+- Unified Communications, Microsoft 365, Microsoft Teams, SIP infrastructure
+
+### Cloud & Architecture
+- Cloud migration, Microsoft Azure Fundamentals, enterprise architecture (ArchiMate 3 Foundation)
 
 ## Certifications
-- Advent of Cyber 2025 - TryHackMe, 2025
-- Red Hat System Administration I (RH124), version 10.0 - Red Hat, 2025
-- Red Hat Certified OpenShift Administrator - Red Hat, 2025
-- Back End Development and APIs - freeCodeCamp, 2024
-- Containers & Kubernetes Essentials - IBM, 2024
-- Advent of Cyber 2023 - TryHackMe, 2023
-- SQL (Intermediate) - HackerRank, 2023
-- Python (Basic) - HackerRank, 2023
-- AWS Educate Introduction to Cloud 101 - AWS, 2023
-- The Complete Web Developer - Zero To Mastery Academy, 2021
-- JavaScript Algorithms and Data Structures - freeCodeCamp, 2020
-- Responsive Web Design - freeCodeCamp, 2020
-- Diploma in Web Development - ESOFT Metro Campus, 2019
-- Diploma in Information Technology - ESOFT Metro Campus, 2018
+- Prince 2 - Foundation - TAYLLOR & COX, 2019
+- Cisco CCNP Collaboration - Cisco, 2017
+- The Open Group Certified: ArchiMate 3 Foundation - The Open Group, 2022
+- Microsoft Certified: Azure Fundamentals - Microsoft, 2022
+- Microsoft 365 Certified: Teams Administrator Associate - Microsoft, 2021
 
 ## Publications
 None listed in CV.
@@ -150,8 +119,7 @@ None listed in CV.
 None listed in CV.
 
 ## Volunteering
-- **Content Team Member, IEEE Student Branch, University of Colombo School of Computing:** Wrote documentation about organization events with attention to specific details.
-- **Fundraising Volunteer, HelpAge International:** Raised funds for a non-profit organization focused on empowering elderly people.
+None listed in CV.
 
 ## References
 More references available upon request.

@@ -1,7 +1,5 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
-
 ## Installed portal CLIs (primary for `/scrape`)
 
 `/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first. Shipped country-agnostic CLIs include `linkedin-search` and `freehire-search`; Danish demos and any skill you add with `/add-portal` are included the same way. You do **not** need a matching `site:` line below for those CLIs to run.
@@ -10,66 +8,78 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+Primary (Freiburg / Basel / remote PM market):
+- **linkedin.com/jobs** - LinkedIn job listings (filter: Freiburg, Basel, Germany, Switzerland, Remote); covered by `linkedin-search` CLI
+- **freehire.dev** - Aggregated tech roles across ~50 ATS platforms; covered by `freehire-search` CLI
+- **stepstone.de** - German job board (WebSearch fallback)
+- **jobs.ch** - Swiss job board (WebSearch fallback)
 
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
 
 ## Query Categories
 
-Queries are grouped by priority. Each query should be combined with your location terms (e.g. your city, region, or metro area) where the site supports it.
+Queries are grouped by priority. Each query should be combined with location terms (Freiburg, Basel, Germany, Switzerland, Remote) where the site supports it.
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
+### Priority 1: Project / Program Management
 
-These match your strongest and most desired career direction.
-
-```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_COUNTRY]
-```
-
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
-
-These match your domain expertise.
+These match the strongest and most desired career direction.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
+site:linkedin.com/jobs "Project Manager" Freiburg OR Basel
+site:linkedin.com/jobs "Program Manager" Freiburg OR Basel OR Remote
+site:linkedin.com/jobs "IT Project Manager" Germany OR Switzerland
+site:linkedin.com/jobs "Digital Transformation" "Project Manager" Remote OR Freiburg OR Basel
+site:stepstone.de "Projektmanager" IT Freiburg OR Basel
+site:jobs.ch "Project Manager" Basel OR Freiburg
 ```
 
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
+### Priority 2: Digital Transformation / Cloud / CCaaS Domain
 
-Adjacent roles you could pivot into.
-
-```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
-```
-
-### Priority 4: Broader Technical / Consulting
-
-Wider net for general technical roles.
+These match core domain expertise from recent Straumann delivery.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:linkedin.com/jobs "cloud migration" "Project Manager" Germany OR Switzerland OR Remote
+site:linkedin.com/jobs CCaaS OR "contact center" transformation Project Manager
+site:linkedin.com/jobs "conversational AI" OR chatbot "Project Manager" Remote
+site:linkedin.com/jobs intranet OR "digital workplace" Project Manager Freiburg OR Basel OR Remote
+site:linkedin.com/jobs "Microsoft 365" OR Teams "Project Manager" Germany OR Switzerland
+site:stepstone.de "Digital Transformation" Projektmanager
+site:jobs.ch "cloud migration" OR "contact center" Project Manager
+```
+
+### Priority 3: Unified Communications / Collaboration (secondary net)
+
+Adjacent roles that leverage the UC engineering and leadership background.
+
+```
+site:linkedin.com/jobs "Unified Communications" Manager OR Lead Freiburg OR Basel OR Remote
+site:linkedin.com/jobs "Microsoft Teams" Administrator OR Lead Germany OR Switzerland
+site:linkedin.com/jobs "Contact Center" Engineer OR Lead Remote OR Basel OR Freiburg
+site:linkedin.com/jobs collaboration OR UC "Team Lead" Germany OR Switzerland
+site:stepstone.de "Unified Communications" OR Teams Freiburg
+site:jobs.ch "Unified Communications" OR "Contact Center" Basel
+```
+
+### Priority 4: Broader Technical Program / PMO
+
+Wider net for general technical program roles. Used when the user runs `/scrape broad`.
+
+```
+site:linkedin.com/jobs "Technical Program Manager" Remote OR Germany OR Switzerland
+site:linkedin.com/jobs PMO "Project Manager" Freiburg OR Basel
+site:linkedin.com/jobs "digital strategy" Manager Germany OR Switzerland OR Remote
+site:stepstone.de "Technical Program Manager" OR PMO
+site:jobs.ch "Program Manager" OR PMO Basel
 ```
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+When evaluating results, verify the job location is within acceptable range:
+- **Ideal** — Freiburg or Basel (including hybrid)
+- **Acceptable** — Remote with DE/CH presence, or commutable Upper Rhine corridor
+- **Borderline** — On-site elsewhere in Baden-Württemberg or northwest Switzerland with partial remote
+- **Too far** — On-site outside the Freiburg/Basel corridor with no remote option
 
 ## Date Filter
 
@@ -78,4 +88,6 @@ Only include jobs posted within the last 14 days, or with an application deadlin
 ## Adapting Queries
 
 If the user specifies a focus area, select queries from the matching category and also generate 2-3 custom queries for that focus. For example:
-- "/scrape [focus_area]" -> relevant category queries + custom focus-specific queries
+- "/scrape contact center" -> Priority 2 CCaaS queries + custom conversational AI / CX queries
+- "/scrape teams" or "/scrape uc" -> Priority 3 UC/Teams queries + custom collaboration leadership queries
+- "/scrape broad" -> all four priority categories

@@ -43,18 +43,18 @@ Expected output: `Output written on main_<company>_<role>.pdf (2 pages, ...)`. A
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Michal Dub - CV},
     pdfpagemode=FullScreen,
 }
 \usepackage[scale=0.77]{geometry}
 \usepackage{import}
 
 % Personal data
-\name{[FIRST_NAME]}{[LAST_NAME]}
-\address{[YOUR_ADDRESS]}{}{}
-\phone[mobile]{[YOUR_PHONE]}
-\email{[YOUR_EMAIL]}
-\extrainfo{\href{[YOUR_LINKEDIN_URL]}{LinkedIn}, \href{[YOUR_GITHUB_URL]}{GitHub}}
+\name{Michal}{Dub}
+\address{Freiburg im Breisgau, Germany}{}{}
+\phone[mobile]{+49 173 621 6559}
+\email{md@michaldub.com}
+\extrainfo{\href{https://www.linkedin.com/in/michal-dub-007}{LinkedIn}}
 
 \begin{document}
 \makecvtitle
@@ -110,17 +110,14 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 **Create 2-3 profile statement templates for your main role types:**
 
 <!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For Project / Program Manager roles:**
+> Project Manager with an engineering background and more than 10 years delivering large-scale IT initiatives. Experienced owning global programs from RFP through go-live, including cloud migration, digital workplace rollouts, and contact-center transformation. Combines stakeholder management and program discipline with hands-on understanding of collaboration and UC platforms. PRINCE2 Foundation certified.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For Digital Transformation / Cloud Migration PM roles:**
+> Global Project Manager specializing in digital transformation and cloud migration programs. Recently delivered a company-wide intranet for 12k+ employees and leads a multi-country CCaaS contact-center migration using conversational AI. Background includes Microsoft 365 / Teams adoption strategy and enterprise UC engineering leadership. Azure Fundamentals and ArchiMate 3 Foundation certified.
 
-**For DevOps / Cloud Engineer roles:**
-> DevOps / Cloud Engineer and Computer Science graduate with four years of experience across Linux systems, OpenShift/Kubernetes, CI/CD, automation, monitoring, and production operations. Experienced in managing releases, troubleshooting incidents, automating infrastructure tasks with Bash and Ansible, and supporting resilient cloud-native platforms with Prometheus, Grafana, Ceph, Velero, and MinIO.
-
-**For Platform / DevSecOps-adjacent roles:**
-> DevOps / Cloud Engineer with hands-on experience in OpenShift, Kubernetes, Linux, CI/CD, infrastructure automation, monitoring, network policies, and production hardening. Brings security-adjacent platform experience through implementation audits, secure access controls, cloud security rules, system documentation, and high-availability operations, with a strong base for roles that combine DevOps delivery with vulnerability remediation and compliance support.
+**For Unified Communications / Collaboration leadership roles:**
+> Unified Communications leader and Project Manager with experience heading UC at Jobrad and leading global UC engineering teams at MSD. Strengths include Microsoft 365 / Teams cloud migration strategy, contact-center technologies, SIP infrastructure, and simplifying calling, conferencing, and messaging experiences at scale. CCNP Collaboration and Teams Administrator Associate certified.
 
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.

@@ -1,18 +1,11 @@
-%% Example CV - [YOUR_NAME]
-%% Comprehensive overview of all competencies, experience, and achievements.
-%% Use as a master reference when tailoring role-specific CVs.
-%%
-%% SETUP: Run /setup to populate this with your actual information.
+%% CV - Michal Dub
+%% Master reference for tailoring role-specific CVs.
 %% Compile with: lualatex main_example.tex
-%% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
 
 \documentclass[11pt,a4paper,sans]{moderncv}
 \moderncvstyle{banking}
 \moderncvcolor{blue}
 
-% Force both first and last name AND section headings to render in moderncv
-% blue (color1). Default banking on lualatex+MiKTeX leaves these black, which
-% looks inconsistent with the rest of the blue accent scheme.
 \renewcommand*{\firstnamestyle}[1]{{\fontsize{34}{36}\bfseries\upshape\color{color1}#1}}
 \renewcommand*{\lastnamestyle}[1]{{\fontsize{34}{36}\bfseries\upshape\color{color1}#1}}
 \renewcommand*{\sectionstyle}[1]{{\sectionfont\color{color1}#1}}
@@ -24,141 +17,120 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Michal Dub - CV},
     pdfpagemode=FullScreen,
 }
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
+\usepackage{needspace}
 
-% personal data
-\name{[First]}{[Last]}
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Michal}{Dub}
+\address{Freiburg im Breisgau, Germany}{}{}
+\phone[mobile]{+49 173 621 6559}
+\email{md@michaldub.com}
+\extrainfo{\href{https://www.linkedin.com/in/michal-dub-007}{LinkedIn}}
 
 \begin{document}
 
 \makecvtitle
 
-% ============================================================
-%     PROFILE STATEMENT
-% ============================================================
-
 \vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
-
-% ============================================================
-%     CORE COMPETENCIES
-% ============================================================
+\small{Project Manager with an engineering background and more than 10 years delivering large-scale IT initiatives. Experienced owning global programs from RFP through go-live, including cloud migration, digital workplace rollouts, and contact-center transformation. Combines stakeholder management and program discipline with UC / collaboration platform depth. PRINCE2 Foundation, CCNP Collaboration, ArchiMate 3 Foundation, Azure Fundamentals, and Teams Administrator Associate.}
 
 \section{Core Competencies}
 \vspace{1pt}
 \begin{itemize}
-
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
-
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
-
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
-
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
-
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
-
+\item \textbf{Project \& Program Delivery:} Project management, program management, RFP-to-go-live ownership, stakeholder management, capacity planning, business cases
+\item \textbf{Digital Transformation:} Cloud migration, digital workplace / intranet, Microsoft 365 / Teams adoption, customer-journey redesign
+\item \textbf{Contact Center \& UC:} CCaaS, contact-center technologies, conversational AI / chatbots, SIP, unified communications leadership
+\item \textbf{Leadership:} Global UC engineering team leadership, vendor coordination, cross-country delivery
+\item \textbf{Architecture \& Cloud:} ArchiMate 3 Foundation, Azure Fundamentals, enterprise collaboration platforms
 \end{itemize}
-
-% ============================================================
-%     PROFESSIONAL EXPERIENCE
-% ============================================================
 
 \section{Professional Experience}
 \vspace{3pt}
 \begin{itemize}
 
-% --- Most Recent Role ---
-\item{\cventry{[YYYY--Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2022--Present}{Global Project Manager}{Straumann Group}{Switzerland/Germany}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1 - be specific, use numbers where possible]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
-    \item [Achievement or responsibility 4]
+    \item Own global project delivery from RFP through successful go-live; project and program management, cloud migration, and stakeholder management
+    \item Delivered employee intranet platform for 12k+ employees worldwide (mobile and desktop, including users without email)
+    \item Lead global contact-center digital transformation and customer-journey redesign with conversational AI
+    \item Manage end-to-end CCaaS cloud migration across 30 countries, reducing infrastructure cost and improving customer experience
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Previous Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2020--2022}{Head of Unified Communications}{Jobrad}{Freiburg im Breisgau}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
+    \item Led UC team; defined cloud migration strategy to Microsoft 365 and Microsoft Teams
+    \item Drove UC tool adoption and built a unified communications environment
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Earlier Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2019--2020}{Associate Director -- UC Engineering Lead}{MSD}{Prague}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
+    \item Led global team of UC engineers; simplified calling, conferencing, IM, and contact-center experiences
+    \item Developed and implemented new platforms; solved business use cases with speech recognition
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{2018--2019}{Global UC Engineering Lead}{MSD}{}{}{\vspace{1pt}
+\begin{itemize}
+    \item Owned global design and development of MSD unified communication network; led voice engineering team
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{2014--2018}{Senior Unified Communications Engineer}{MSD Prague}{}{}{\vspace{1pt}
+\begin{itemize}
+    \item Delivered new standards and global project implementations; optimized contact-center solutions via business consulting
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{5\baselineskip}
+\item{\cventry{2011--2014}{Systems Engineer -- Unified Communications}{ALEF NULA a.s.}{Prague}{}{\vspace{1pt}
+\begin{itemize}
+    \item Unified Communications systems engineering
 \end{itemize}}}
 
 \end{itemize}
 
-% ============================================================
-%     EDUCATION
-% ============================================================
+\section{Selected Projects}
+\vspace{1pt}
+\begin{itemize}
+\item{\textbf{Straumann Intranet (2025):} Global rollout with AI search, stmngrp mobile app, personalization, and Service Hub integrations}
+\item{\textbf{Global SIP Infrastructure (MSD, 2020--2021):} SIP across 40+ sites; cost reduction, consolidation, improved call quality}
+\end{itemize}
 
 \section{Education}
 \vspace{1pt}
 \begin{itemize}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
-}}
-
-\vspace{3pt}
-
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
+\needspace{5\baselineskip}
+\item{\cventry{2009}{Masters Degree -- Computer Science}{Czech University of Life Sciences in Prague}{Prague, Czech Republic}{}{\vspace{1pt}
+Computer science.
 }}
 
 \end{itemize}
 
-% ============================================================
-%     LANGUAGES
-% ============================================================
-
-\section{Languages}
+\section{Certifications}
 \vspace{1pt}
 \begin{itemize}
-\item [Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).
+\item{\textbf{PRINCE2 Foundation} -- TAYLLOR \& COX (2019)}
+\item{\textbf{Cisco CCNP Collaboration} -- Cisco (2017)}
+\item{\textbf{ArchiMate 3 Foundation} -- The Open Group (2022)}
+\item{\textbf{Azure Fundamentals} -- Microsoft (2022)}
+\item{\textbf{Teams Administrator Associate} -- Microsoft (2021)}
 \end{itemize}
-
-% ============================================================
-%     PUBLICATIONS (optional)
-% ============================================================
-
-\section{Publications}
-\vspace{1pt}
-\begin{itemize}
-\item [Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}
-\end{itemize}
-
-% ============================================================
-%     HONORS AND AWARDS (optional)
-% ============================================================
-
-\section{Honors and Awards}
-\vspace{1pt}
-\begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
-\end{itemize}
-
-% ============================================================
-%     REFERENCES
-% ============================================================
 
 \section{References}
 \vspace{1pt}

@@ -14,7 +14,7 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 ## Ready-Made STAR Examples
 
-<!-- These are populated by /setup from your actual experience. Below are templates showing the format. -->
+<!-- Full STAR examples not invented. Use the stubs below and complete Situation/Task/Action/Result manually before interviews. -->
 
 ### 1. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
 **S:** [CONTEXT - what was happening, what was the problem]
@@ -41,60 +41,50 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 ## STAR Candidates (Complete Manually)
 
-### OpenShift cluster deployments
-**Source:** CV - hSenid Mobile Solutions, Trainee DevOps / Cloud Engineer and Associate DevOps / Cloud Engineer
-**What happened:** Provisioned and configured single-node and multi-node OpenShift clusters, including on-premises and K3s environments, for R&D and client deployments.
-**Why it matters:** Useful for questions about Kubernetes/OpenShift, infrastructure delivery, client-facing technical work, and learning complex systems.
+### Straumann Group Intranet global rollout
+**Source:** CV - Straumann Group, Global Project Manager / Projects section (June 2025)
+**What happened:** Led global intranet implementation for 12k+ employees with mobile/desktop access (including users without email), AI-powered search, stmngrp app, personalization, Service Hub integrations, and survey-backed design decisions.
+**Why it matters:** Useful for questions about global rollouts, stakeholder management, digital workplace delivery, change adoption, and data-informed product decisions.
 **S/T/A/R stub:**
 - Situation:
 - Task:
 - Action:
 - Result:
 
-### CI/CD and Ansible automation
-**Source:** CV - hSenid Mobile Solutions, Associate DevOps / Cloud Engineer
-**What happened:** Implemented CI/CD pipelines and Ansible automation that reduced patching and migration execution times from hours to seconds.
-**Why it matters:** Useful for questions about automation, measurable impact, improving team workflows, and DevOps engineering.
+### CCaaS contact-center cloud migration
+**Source:** CV - Straumann Group, Global Project Manager / Projects section (February 2023 - present)
+**What happened:** Managing end-to-end CCaaS global cloud migration from RFP through transition of operations across 30 countries, with chatbots and conversational AI reshaping the customer journey.
+**Why it matters:** Useful for questions about RFP ownership, multi-country delivery, cloud migration risk, vendor management, and customer-experience transformation.
 **S/T/A/R stub:**
 - Situation:
 - Task:
 - Action:
 - Result:
 
-### Production version upgrades
-**Source:** CV - hSenid Mobile Solutions, DevOps / Systems Engineer
-**What happened:** Implemented major version upgrades to production systems with testing, procedure documentation, and impact analysis.
-**Why it matters:** Useful for questions about risk management, production ownership, release management, and minimizing downtime.
+### Global SIP infrastructure implementation
+**Source:** CV - MSD project (January 2020 - February 2021)
+**What happened:** Implemented global SIP infrastructure across 40+ international locations, consolidating services and improving call quality and reliability while reducing communication costs.
+**Why it matters:** Useful for questions about large-scale infrastructure programs, UC/voice domain depth, measurable cost and quality outcomes, and cross-site coordination.
 **S/T/A/R stub:**
 - Situation:
 - Task:
 - Action:
 - Result:
 
-### Monitoring and observability implementation
-**Source:** CV - hSenid Mobile Solutions, Trainee DevOps / Cloud Engineer
-**What happened:** Implemented Prometheus, Grafana, and exporters for Node, MySQL, and YugabyteDB, plus automated health checks and log management.
-**Why it matters:** Useful for questions about reliability, troubleshooting, operational visibility, and incident prevention.
+### Microsoft 365 / Teams cloud migration strategy at Jobrad
+**Source:** CV - Jobrad, Head of Unified Communications (2020-2022)
+**What happened:** Defined cloud migration strategy to Microsoft 365 and Microsoft Teams and drove UC tool adoption toward a unified communications environment while leading the team.
+**Why it matters:** Useful for questions about cloud collaboration strategy, adoption/change management, team leadership, and bridging engineering and business outcomes.
 **S/T/A/R stub:**
 - Situation:
 - Task:
 - Action:
 - Result:
 
-### Backup and disaster recovery automation
-**Source:** CV - hSenid Mobile Solutions, Trainee DevOps / Cloud Engineer
-**What happened:** Automated backups for clusters, databases, and namespaces with Velero and MinIO, and formulated disaster recovery strategies.
-**Why it matters:** Useful for questions about resilience, business continuity, cloud-native operations, and ownership of critical systems.
-**S/T/A/R stub:**
-- Situation:
-- Task:
-- Action:
-- Result:
-
-### Client technical demos and feasibility studies
-**Source:** CV - hSenid Mobile Solutions, Associate DevOps / Cloud Engineer
-**What happened:** Led feasibility studies and technical demos, translating requirements into effort estimations for client objectives.
-**Why it matters:** Useful for questions about stakeholder communication, technical consulting, requirements analysis, and cross-functional work.
+### Global UC engineering leadership at MSD
+**Source:** CV - MSD, Associate Director / Global UC Engineering Lead (2018-2020)
+**What happened:** Led global UC / voice engineering teams; simplified calling, conferencing, IM, and contact-center experiences; implemented new platforms including speech-recognition use cases.
+**Why it matters:** Useful for questions about technical leadership, people leadership of specialists, platform modernization, and translating business use cases into technology.
 **S/T/A/R stub:**
 - Situation:
 - Task:
@@ -127,19 +117,19 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 ### About the Team
 - "How big is the team, and how do you divide work?"
-- "What does the development/project lifecycle look like, from idea to production?"
+- "What does the project lifecycle look like, from idea to go-live?"
 - "How do you onboard new team members?"
 
 ### About Tech & Growth
-- "What's your current tech stack for [relevant area]?"
-- "Is there room to grow into more architectural or strategic decisions?"
-- "How does the team stay current with new tools and methods?"
+- "What's your current stack for collaboration, contact center, or delivery tooling?"
+- "Is there room to grow into more program or portfolio ownership?"
+- "How does the team stay current with new platforms and methods?"
 
 ### About Culture (use these to prevent disappointment)
 - "How would you describe the team culture?"
 - "What does professional development look like here?"
-- "Is there flexibility for remote/hybrid work?"
-- "What's the balance between development/new projects and maintenance work?"
+- "Is there flexibility for remote/hybrid work between Freiburg and Basel?"
+- "What's the balance between new transformation initiatives and run/maintain work?"
 - "How would you describe the leadership style in this team?"
 - "What do people who thrive here have in common?"
 
@@ -168,7 +158,7 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 When the user asks for interview practice:
 1. Ask which role/company to simulate
 2. Start with easy warm-up questions ("Tell me about yourself")
-3. Progress to role-specific technical questions
+3. Progress to role-specific delivery and domain questions
 4. Include 1-2 behavioral questions using the competencies from the job posting
 5. End with a tough question or curveball
 6. After each answer, give brief feedback: what worked, what to sharpen

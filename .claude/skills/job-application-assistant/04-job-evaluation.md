@@ -20,9 +20,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** DevOps, cloud infrastructure, OpenShift, Kubernetes, Docker, Linux/RHEL, CI/CD, Bash automation, Ansible, monitoring with Prometheus/Grafana, high-availability operations, production troubleshooting, release management.
-**Moderate match areas:** Backend development, AWS, GCP, GitOps, Ceph/Rook storage, Velero/MinIO backups, network policies, ISO 27001:2022 internal audits, implementation audits, web app security, OSINT, customer technical demos.
-**Weak match areas:** Dedicated product security, formal vulnerability management ownership, FedRAMP, SOC2, full-time application security, advanced compliance reporting.
+**Strong match areas:** Project management, program management, IT project delivery, digital transformation, cloud migration, stakeholder management, RFP-to-go-live ownership, contact center / CCaaS programs, conversational AI customer-journey initiatives, Microsoft 365 / Teams collaboration programs, unified communications.
+**Moderate match areas:** Enterprise architecture (ArchiMate), Azure fundamentals, SIP / voice infrastructure, speech recognition use cases, capacity planning, business case development, PMO coordination, technical program management.
+**Weak match areas:** Hands-on DevOps / Kubernetes platform engineering as primary duty, pure software development IC roles, dedicated product management without project delivery framing, undocumented language requirements (e.g. German C1) if not confirmed.
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -34,9 +34,9 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** DevOps engineering, cloud platform engineering, OpenShift/Kubernetes operations, production release support, infrastructure automation, monitoring/observability, backup and disaster recovery.
-**Moderate:** DevSecOps-adjacent work, backend development, client-facing technical demos, ISO 27001:2022 internal audits, implementation audits, cloud security rules, network policy management.
-**Entry-level:** Formal application security, product security, vulnerability management programs, compliance framework ownership.
+**Strong:** Global project/program management, digital workplace / intranet rollouts, CCaaS cloud migration, UC / collaboration leadership, multi-country IT delivery, stakeholder and vendor management from RFP through go-live.
+**Moderate:** UC engineering leadership, contact-center technology consulting, SIP infrastructure programs, team leadership of specialist engineers, Microsoft Teams / M365 adoption programs.
+**Entry-level / stretch:** Pure product management, software engineering IC, DevOps/SRE platform ownership, people management of large non-technical organizations without IT delivery focus.
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -48,13 +48,13 @@ Does the role and company culture match the behavioral profile?
 | 40-59 | Some friction areas |
 | 0-39 | Significant culture mismatch |
 
-**Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
+**Red flags to research:** Department disorganization, work dominated by maintenance over delivery of initiatives, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
-- Within commute range: PASS
-- Remote with occasional office: PASS
-- Requires relocation: FAIL (deal-breaker)
-- Frequent international travel: FLAG (discuss with user)
+- Freiburg or Basel (incl. hybrid): PASS
+- Remote with DE/CH presence or Upper Rhine commute: PASS
+- On-site outside Freiburg/Basel corridor with no remote option: FAIL (deal-breaker)
+- Frequent international travel: FLAG (discuss with user; current role already spans Switzerland/Germany)
 
 ### 5. Career Alignment & Motivation (0-100)
 Does this role advance career goals and contain tasks that energize?
@@ -67,17 +67,18 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- Target DevOps Engineer, Site Reliability Engineer, Platform Engineer, Systems Engineer, and Operations Engineer roles. Current CV direction also supports cloud engineering and DevSecOps-adjacent opportunities.
+- Primary: Project Manager, Program Manager, IT Project Manager, Digital Transformation Project Manager roles.
+- Secondary: UC / collaboration / contact-center engineering or leadership roles when they leverage the engineering background.
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: Not explicitly specified. Likely candidates from CV: building systems, Linux/cloud infrastructure, automation, troubleshooting, Kubernetes/OpenShift, monitoring, production reliability.
-- Tasks that drain: Not specified.
-- Non-task factors: Not specified.
+- Tasks that energize: Large IT project/program delivery, digital transformation, cloud migration, contact-center / conversational AI customer experience, workplace collaboration platforms, stakeholder-led global rollouts.
+- Tasks that drain: Not specified on CV; avoid inventing. Flag pure maintenance-only or pure coding IC roles as likely low-energy relative to PM goals.
+- Non-task factors: Not specified beyond location preference for Freiburg/Basel.
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: Not specified.
-- **Flexibility**: Colombo/Kandy, Sri Lanka-based; remote-first and hybrid second preference. Kandy is preferred, followed by Colombo.
-- **Professional development**: Current CV points toward cloud-native infrastructure, DevOps, platform engineering, and security-adjacent growth.
+- **Security:** Not specified.
+- **Flexibility:** Freiburg im Breisgau based; Freiburg and Basel search focus; hybrid and remote acceptable.
+- **Professional development:** Continue building senior project/program leadership in digital transformation, cloud migration, and customer-experience / UC domains.
 
 ### 6. Salary Benchmark (Optional)
 
@@ -131,7 +132,7 @@ Present the evaluation as:
 
 ### Company Research Checklist
 - [ ] Checked company website (mission, values, recent news)
-- [ ] Checked review sites (Glassdoor, Jobindex, etc.)
+- [ ] Checked review sites (Glassdoor, kununu, etc.)
 - [ ] Checked LinkedIn for team size, recent hires, connections
 - [ ] Checked media for restructuring, growth, or workplace issues
 - [ ] Identified network contacts who may know the team/manager

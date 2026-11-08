@@ -1,0 +1,67 @@
+# Daily job digest configuration for Michal Dub
+# Primary host: Windows Task Scheduler 08:00 Europe/Berlin (wake-to-run)
+# Backup: GitHub Actions on nyvlt000/ai-job-search-codex (~09:30 CET) if heartbeat missing
+
+timezone: Europe/Berlin
+email:
+  to: md@michaldub.com
+  # Verified Resend sender. Override with env RESEND_FROM if set.
+  from: "Job Digest <onboarding@resend.dev>"
+  # Credentials (never commit): RESEND_API_KEY, optional RESEND_FROM
+
+jobage_days: 1
+detail_fetch_cap: 30
+description_max_chars: 800
+company_research_ttl_days: 30
+
+fit_keywords:
+  - project manager
+  - program manager
+  - digital transformation
+  - cloud migration
+  - contact center
+  - ccaas
+  - unified communications
+  - conversational ai
+  - microsoft 365
+  - teams
+  - stakeholder
+  - intranet
+
+portals:
+  linkedin-search:
+    cli: .agents/skills/linkedin-search/cli/src/cli.ts
+    queries:
+      - query: "Project Manager"
+        location: "Basel, Switzerland"
+        limit: 10
+      - query: "Project Manager"
+        location: "Freiburg im Breisgau, Germany"
+        limit: 10
+      - query: "Digital Transformation"
+        location: "Basel, Switzerland"
+        limit: 10
+      - query: "Contact Center"
+        location: "Basel, Switzerland"
+        limit: 10
+      - query: "Cloud Migration"
+        location: "Basel, Switzerland"
+        limit: 10
+      - query: "Unified Communications"
+        location: "Remote"
+        limit: 10
+        remote: remote
+
+  jobs-ch-search:
+    cli: .agents/skills/jobs-ch-search/cli/src/cli.ts
+    lang: en
+    queries:
+      - query: "project manager"
+        location: "Basel"
+        limit: 10
+      - query: "digital transformation"
+        location: "Basel"
+        limit: 10
+      - query: "contact center"
+        location: "Basel"
+        limit: 10
