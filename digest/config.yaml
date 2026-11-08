@@ -1,18 +1,28 @@
 # Daily job digest configuration for Michal Dub
-# Primary host: Windows Task Scheduler 08:00 Europe/Berlin (wake-to-run)
-# Backup: GitHub Actions on nyvlt000/ai-job-search-codex (~09:30 CET) if heartbeat missing
+# Primary host: GitHub Actions on nyvlt000/ai-job-search-codex (08:00 Europe/Berlin intent)
 
 timezone: Europe/Berlin
 email:
   to: md@michaldub.com
   # Verified Resend sender. Override with env RESEND_FROM if set.
   from: "Job Digest <onboarding@resend.dev>"
-  # Credentials (never commit): RESEND_API_KEY, optional RESEND_FROM
+  # Credentials (never commit): RESEND_API_KEY, RESEND_FROM
 
-jobage_days: 1
+jobage_days: 30
+# Per-portal detail budgets so one board cannot starve the others.
 detail_fetch_cap: 30
+detail_fetch_cap_per_portal:
+  linkedin-search: 20
+  jobs-ch-search: 20
+  jobscout24-search: 20
 description_max_chars: 800
 company_research_ttl_days: 30
+
+# Enrichment order: Swiss boards first, then LinkedIn.
+portal_enrich_order:
+  - jobs-ch-search
+  - jobscout24-search
+  - linkedin-search
 
 fit_keywords:
   - project manager
@@ -27,6 +37,18 @@ fit_keywords:
   - teams
   - stakeholder
   - intranet
+  # German / CH title variants
+  - projektleiter
+  - projektmanager
+  - projektleitung
+  - programmmanager
+  - digitale transformation
+  - contact centre
+  - kundenservice
+  - kundenkontakt
+  - unified communication
+  - cloud-migration
+  - it-projekt
 
 portals:
   linkedin-search:
@@ -59,9 +81,35 @@ portals:
       - query: "project manager"
         location: "Basel"
         limit: 10
+      - query: "Projektleiter"
+        location: "Basel"
+        limit: 10
       - query: "digital transformation"
         location: "Basel"
         limit: 10
       - query: "contact center"
+        location: "Basel"
+        limit: 10
+      - query: "Projektmanager"
+        location: "Basel"
+        limit: 10
+
+  jobscout24-search:
+    cli: .agents/skills/jobscout24-search/cli/src/cli.ts
+    lang: de
+    queries:
+      - query: "project manager"
+        location: "Basel"
+        limit: 10
+      - query: "Projektleiter"
+        location: "Basel"
+        limit: 10
+      - query: "digital transformation"
+        location: "Basel"
+        limit: 10
+      - query: "contact center"
+        location: "Basel"
+        limit: 10
+      - query: "Projektmanager"
         location: "Basel"
         limit: 10

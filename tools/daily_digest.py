@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Daily LinkedIn + jobs.ch digest orchestrator (quality-gated)."""
+"""Daily multi-portal job digest orchestrator (quality-gated).
+
+Configured portals (see digest/config.yaml): LinkedIn, jobs.ch, JobScout24.
+Primary runner: GitHub Actions. Emails via Resend (RESEND_API_KEY / RESEND_FROM).
+"""
 
 from __future__ import annotations
 
@@ -250,10 +254,31 @@ def _fetch_text(url: str, max_chars: int = 4000) -> str:
     return truncate(text, max_chars)
 
 
+PORTAL_LABELS = {
+    "linkedin-search": "LinkedIn",
+    "jobs-ch-search": "jobs.ch",
+    "jobscout24-search": "JobScout24",
+}
+
+# Portals whose detail CLI takes --lang.
+LANG_DETAIL_PORTALS = frozenset({"jobs-ch-search", "jobscout24-search"})
+
+
+def portal_label(portal_name: str) -> str:
+    return PORTAL_LABELS.get(portal_name, portal_name)
+
+
 def fetch_detail(portal: str, cli: str, job_id: str, lang: str = "en") -> dict[str, Any]:
-    if portal == "jobs-ch-search":
+    if portal in LANG_DETAIL_PORTALS:
         return run_bun_cli(cli, ["detail", job_id, "--lang", lang, "--format", "json"])
     return run_bun_cli(cli, ["detail", job_id, "--format", "json"])
+
+
+def portal_detail_cap(cfg: dict[str, Any], portal_name: str) -> int:
+    per = cfg.get("detail_fetch_cap_per_portal") or {}
+    if portal_name in per:
+        return int(per[portal_name])
+    return int(cfg.get("detail_fetch_cap", 30))
 
 
 def enrich_portal(
@@ -261,15 +286,16 @@ def enrich_portal(
     cards: list[dict[str, Any]],
     cfg: dict[str, Any],
     seen: dict[str, Any],
-    detail_budget: list[int],
 ) -> PortalResult:
+    """Enrich one portal with its own detail-fetch budget (no cross-portal starvation)."""
     conf = cfg["portals"][portal_name]
     cli = conf["cli"]
     lang = conf.get("lang", "en")
     keywords = cfg.get("fit_keywords") or []
     max_desc = int(cfg.get("description_max_chars", 800))
     ttl = int(cfg.get("company_research_ttl_days", 30))
-    cap = int(cfg.get("detail_fetch_cap", 30))
+    cap = portal_detail_cap(cfg, portal_name)
+    used = 0
 
     rows: list[DigestRow] = []
     for card in cards:
@@ -282,27 +308,36 @@ def enrich_portal(
         key = seen_key(url, company, title)
         if key in seen["seen"]:
             continue
-        if not passes_fit({**card, "description": ""}, keywords):
-            # Still mark as seen? Prefer not — may match later with different framing.
-            # Keep unseen so a broader query can surface it; skip for this digest.
-            continue
+
+        title_fit = passes_fit({**card, "description": ""}, keywords)
 
         description = ""
-        if detail_budget[0] < cap and job_id:
+        # Fetch detail when title already fits, or when we still have budget to
+        # re-check fit against the description (DE titles on jobs.ch).
+        if used < cap and job_id and (title_fit or keywords):
             try:
-                detail = fetch_detail(portal_name, cli, job_id if portal_name == "linkedin-search" else (job_id or url), lang)
+                detail = fetch_detail(
+                    portal_name,
+                    cli,
+                    job_id if portal_name == "linkedin-search" else (job_id or url),
+                    lang,
+                )
                 description = truncate(str(detail.get("description") or ""), max_desc)
                 if not date_posted:
                     date_posted = str(detail.get("date") or "").strip()
                 if not url:
                     url = str(detail.get("url") or "").strip()
-                detail_budget[0] += 1
+                used += 1
             except PortalQualityError:
                 description = ""
 
+        if not title_fit and not passes_fit(
+            {**card, "description": description}, keywords
+        ):
+            continue
+
         if not description:
-            # Quality: included rows need a description. Skip without failing whole run,
-            # unless we never get any detail-capable rows — handled by caller.
+            # Quality: included rows need a description.
             continue
 
         company_summary = research_company(company or "Unknown", ttl)
@@ -332,7 +367,7 @@ def enrich_portal(
 
 
 def render_table(portal_name: str, rows: list[DigestRow]) -> str:
-    label = "LinkedIn" if portal_name.startswith("linkedin") else "jobs.ch"
+    label = portal_label(portal_name)
     parts = [f"<h2>{html.escape(label)}</h2>"]
     if not rows:
         parts.append("<p><em>No new matches today.</em></p>")
@@ -364,21 +399,22 @@ def render_table(portal_name: str, rows: list[DigestRow]) -> str:
 
 def render_success_email(
     day: str,
-    linkedin: PortalResult,
-    jobsch: PortalResult,
+    results: list[PortalResult],
     source: str,
 ) -> tuple[str, str]:
-    n = len(linkedin.rows) + len(jobsch.rows)
+    n = sum(len(r.rows) for r in results)
     prefix = "BACKUP — " if source == "backup" else ""
-    subject = f"{prefix}Job digest {day} — {n} new (LinkedIn + jobs.ch)"
+    counts = ", ".join(
+        f"{portal_label(r.name)} {len(r.rows)}" for r in results
+    )
+    labels = " + ".join(portal_label(r.name) for r in results)
+    subject = f"{prefix}Job digest {day} — {n} new ({labels})"
     body = [
         f"<p>Daily digest for <strong>{html.escape(day)}</strong> "
         f"(source: {html.escape(source)}).</p>",
-        f"<p>New roles: <strong>{n}</strong> "
-        f"(LinkedIn {len(linkedin.rows)}, jobs.ch {len(jobsch.rows)}).</p>",
-        render_table(linkedin.name, linkedin.rows),
-        render_table(jobsch.name, jobsch.rows),
+        f"<p>New roles: <strong>{n}</strong> ({html.escape(counts)}).</p>",
     ]
+    body.extend(render_table(r.name, r.rows) for r in results)
     return subject, "\n".join(body)
 
 
@@ -390,10 +426,24 @@ def render_failure_email(day: str, errors: list[str], source: str) -> tuple[str,
     body = (
         f"<p>Daily digest <strong>failed</strong> for {html.escape(day)} "
         f"(source: {html.escape(source)}).</p>"
-        f"<p>Quality gate: both LinkedIn and jobs.ch must succeed.</p>"
+        f"<p>Quality gate: every configured portal must succeed "
+        f"(LinkedIn, jobs.ch, JobScout24).</p>"
         f"<ul>{items}</ul>"
     )
     return subject, body
+
+
+def portal_enrich_order(cfg: dict[str, Any]) -> list[str]:
+    configured = list((cfg.get("portals") or {}).keys())
+    preferred = cfg.get("portal_enrich_order") or []
+    ordered: list[str] = []
+    for name in preferred:
+        if name in configured and name not in ordered:
+            ordered.append(name)
+    for name in configured:
+        if name not in ordered:
+            ordered.append(name)
+    return ordered
 
 
 def write_heartbeat(day: str, dry_run: bool) -> Path:
@@ -436,6 +486,7 @@ def collect_cards(portal_name: str, cfg: dict[str, Any], jobage: int) -> list[di
             if q.get("remote"):
                 args.extend(["--remote", str(q["remote"])])
         else:
+            # jobs.ch + JobScout24: location + lang
             args.extend(["--location", q["location"], "--lang", conf.get("lang", "en")])
         payload = run_bun_cli(cli, args)
         if "results" not in payload or not isinstance(payload["results"], list):
@@ -465,18 +516,16 @@ def run_digest(
     seen = load_seen(seen_path)
     errors: list[str] = []
 
-    linkedin_cards: list[dict[str, Any]] = []
-    jobsch_cards: list[dict[str, Any]] = []
+    portal_names = portal_enrich_order(cfg)
+    if not portal_names:
+        raise PortalQualityError("No portals configured in digest/config.yaml")
 
-    try:
-        linkedin_cards = collect_cards("linkedin-search", cfg, jobage)
-    except PortalQualityError as exc:
-        errors.append(f"linkedin-search: {exc}")
-
-    try:
-        jobsch_cards = collect_cards("jobs-ch-search", cfg, jobage)
-    except PortalQualityError as exc:
-        errors.append(f"jobs-ch-search: {exc}")
+    cards_by: dict[str, list[dict[str, Any]]] = {}
+    for name in portal_names:
+        try:
+            cards_by[name] = collect_cards(name, cfg, jobage)
+        except PortalQualityError as exc:
+            errors.append(f"{name}: {exc}")
 
     if errors:
         subject, body = render_failure_email(day, errors, source)
@@ -499,33 +548,35 @@ def run_digest(
         print("\n".join(errors), file=sys.stderr)
         return 2
 
-    detail_budget = [0]
-    linkedin = enrich_portal("linkedin-search", linkedin_cards, cfg, seen, detail_budget)
-    jobsch = enrich_portal("jobs-ch-search", jobsch_cards, cfg, seen, detail_budget)
+    results = [
+        enrich_portal(name, cards_by[name], cfg, seen) for name in portal_names
+    ]
 
-    subject, body = render_success_email(day, linkedin, jobsch, source)
+    subject, body = render_success_email(day, results, source)
     out_dir = REPO_ROOT / "digests"
     out_dir.mkdir(parents=True, exist_ok=True)
     preview = out_dir / f"{day}.html"
     preview.write_text(body, encoding="utf-8")
-    payload = {
+    payload: dict[str, Any] = {
         "date": day,
         "source": source,
-        "linkedin": {
-            "searched": linkedin.searched,
-            "new": [asdict(r) for r in linkedin.rows],
-        },
-        "jobs_ch": {
-            "searched": jobsch.searched,
-            "new": [asdict(r) for r in jobsch.rows],
+        "portals": {
+            r.name: {
+                "searched": r.searched,
+                "new": [asdict(row) for row in r.rows],
+            }
+            for r in results
         },
     }
-    (out_dir / f"{day}.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    (out_dir / f"{day}.json").write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
 
     if dry_run:
+        counts = " ".join(f"{r.name}={len(r.rows)}" for r in results)
         print(f"[dry-run] wrote {preview}")
         print(f"[dry-run] subject: {subject}")
-        print(f"[dry-run] new rows: linkedin={len(linkedin.rows)} jobs.ch={len(jobsch.rows)}")
+        print(f"[dry-run] new rows: {counts}")
         return 0
 
     if send:
@@ -545,13 +596,19 @@ def run_digest(
 
 
 def main(argv: Optional[list[str]] = None) -> int:
-    parser = argparse.ArgumentParser(description="Daily LinkedIn + jobs.ch digest")
+    parser = argparse.ArgumentParser(
+        description="Daily multi-portal job digest (LinkedIn, jobs.ch, JobScout24)"
+    )
     parser.add_argument(
         "--config",
         default=str(REPO_ROOT / "digest" / "config.yaml"),
         help="Path to digest/config.yaml",
     )
-    parser.add_argument("--dry-run", action="store_true", help="Write preview HTML/JSON, no email, no seen update")
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Write preview HTML/JSON, no email, no seen update",
+    )
     parser.add_argument("--send", action="store_true", help="Send email via Resend API")
     parser.add_argument("--send-once", action="store_true", help="Alias for --send")
     parser.add_argument("--source", default="primary", choices=["primary", "backup"])

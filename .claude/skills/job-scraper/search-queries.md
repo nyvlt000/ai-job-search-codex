@@ -11,8 +11,9 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 Primary (Freiburg / Basel / remote PM market):
 - **linkedin.com/jobs** - LinkedIn job listings (filter: Freiburg, Basel, Germany, Switzerland, Remote); covered by `linkedin-search` CLI
 - **freehire.dev** - Aggregated tech roles across ~50 ATS platforms; covered by `freehire-search` CLI
+- **jobs.ch** - Swiss job board; covered by `jobs-ch-search` CLI
+- **jobscout24.ch** - Swiss JobCloud board (Basel-first, DE/EN); covered by `jobscout24-search` CLI
 - **stepstone.de** - German job board (WebSearch fallback)
-- **jobs.ch** - Swiss job board (WebSearch fallback)
 
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
@@ -32,6 +33,7 @@ site:linkedin.com/jobs "IT Project Manager" Germany OR Switzerland
 site:linkedin.com/jobs "Digital Transformation" "Project Manager" Remote OR Freiburg OR Basel
 site:stepstone.de "Projektmanager" IT Freiburg OR Basel
 site:jobs.ch "Project Manager" Basel OR Freiburg
+site:jobscout24.ch "Project Manager" Basel
 ```
 
 ### Priority 2: Digital Transformation / Cloud / CCaaS Domain
@@ -46,6 +48,7 @@ site:linkedin.com/jobs intranet OR "digital workplace" Project Manager Freiburg 
 site:linkedin.com/jobs "Microsoft 365" OR Teams "Project Manager" Germany OR Switzerland
 site:stepstone.de "Digital Transformation" Projektmanager
 site:jobs.ch "cloud migration" OR "contact center" Project Manager
+site:jobscout24.ch "contact center" OR "digital transformation" Basel
 ```
 
 ### Priority 3: Unified Communications / Collaboration (secondary net)
@@ -59,6 +62,7 @@ site:linkedin.com/jobs "Contact Center" Engineer OR Lead Remote OR Basel OR Frei
 site:linkedin.com/jobs collaboration OR UC "Team Lead" Germany OR Switzerland
 site:stepstone.de "Unified Communications" OR Teams Freiburg
 site:jobs.ch "Unified Communications" OR "Contact Center" Basel
+site:jobscout24.ch "Unified Communications" OR Teams Basel
 ```
 
 ### Priority 4: Broader Technical Program / PMO
@@ -71,6 +75,7 @@ site:linkedin.com/jobs PMO "Project Manager" Freiburg OR Basel
 site:linkedin.com/jobs "digital strategy" Manager Germany OR Switzerland OR Remote
 site:stepstone.de "Technical Program Manager" OR PMO
 site:jobs.ch "Program Manager" OR PMO Basel
+site:jobscout24.ch "Program Manager" OR PMO Basel
 ```
 
 ## Location Filter

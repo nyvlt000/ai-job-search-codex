@@ -1,0 +1,57 @@
+name: Daily job scrape
+
+on:
+  schedule:
+    # 08:00 Europe/Berlin in winter (CET = UTC+1). In summer (CEST) this is 09:00 local.
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+jobs:
+  scrape-and-email:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Berlin
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      RESEND_FROM: ${{ secrets.RESEND_FROM }}
+      DIGEST_TO: md@michaldub.com
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python deps
+        run: pip install pyyaml
+
+      - name: Install portal CLI deps
+        run: |
+          (cd .agents/skills/linkedin-search/cli && bun install)
+          (cd .agents/skills/jobs-ch-search/cli && bun install)
+          (cd .agents/skills/jobscout24-search/cli && bun install)
+
+      - name: Scrape portals and email digest
+        id: digest
+        run: |
+          DAY=$(TZ=Europe/Berlin date +%F)
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
+          python tools/daily_digest.py --send --source primary
+
+      - name: Upload digest artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: digest-${{ steps.digest.outputs.day || github.run_id }}
+          path: |
+            digests/
+            digest_runs/
+          if-no-files-found: ignore
+          retention-days: 14
