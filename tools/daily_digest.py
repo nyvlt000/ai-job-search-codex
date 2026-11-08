@@ -522,10 +522,6 @@ def run_digest(
     }
     (out_dir / f"{day}.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    if not dry_run:
-        save_seen(seen_path, seen)
-        write_heartbeat(day, dry_run=False)
-
     if dry_run:
         print(f"[dry-run] wrote {preview}")
         print(f"[dry-run] subject: {subject}")
@@ -539,6 +535,9 @@ def run_digest(
             html_body=body,
             from_addr=from_addr,
         )
+        # Persist seen/heartbeat only after a successful send.
+        save_seen(seen_path, seen)
+        write_heartbeat(day, dry_run=False)
         print(f"Sent via Resend: {subject} id={result.get('id', '?')}")
     else:
         print(f"Prepared (not sent): {subject} -> {preview}")

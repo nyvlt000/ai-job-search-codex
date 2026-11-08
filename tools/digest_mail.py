@@ -61,6 +61,8 @@ def send_html_email(
             "Authorization": f"Bearer {key}",
             "Content-Type": "application/json",
             "Accept": "application/json",
+            # Cloudflare on api.resend.com bans the default Python-urllib UA (Error 1010).
+            "User-Agent": "ai-job-search-digest/1.0 (+https://github.com/nyvlt000/ai-job-search-codex)",
         },
     )
     try:
