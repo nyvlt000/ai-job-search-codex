@@ -81,17 +81,24 @@ class DailyDigestHelpersTest(unittest.TestCase):
         self.assertIn("World", text)
 
     def test_resend_mailer_requires_api_key(self):
+        import os
+
         from digest_mail import DigestMailError, send_html_email
 
-        with self.assertRaises(DigestMailError) as ctx:
-            send_html_email(
-                to_addr="md@michaldub.com",
-                subject="t",
-                html_body="<p>x</p>",
-                from_addr="Job Digest <test@example.com>",
-                api_key="",
-            )
-        self.assertIn("RESEND_API_KEY", str(ctx.exception))
+        previous = os.environ.pop("RESEND_API_KEY", None)
+        try:
+            with self.assertRaises(DigestMailError) as ctx:
+                send_html_email(
+                    to_addr="md@michaldub.com",
+                    subject="t",
+                    html_body="<p>x</p>",
+                    from_addr="Job Digest <test@example.com>",
+                    api_key=None,
+                )
+            self.assertIn("RESEND_API_KEY", str(ctx.exception))
+        finally:
+            if previous is not None:
+                os.environ["RESEND_API_KEY"] = previous
 
 
 if __name__ == "__main__":
