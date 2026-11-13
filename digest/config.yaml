@@ -1,5 +1,5 @@
-# Daily job digest configuration for Michal Dub
-# Primary host: GitHub Actions on nyvlt000/ai-job-search-codex (daily 08:00 CET)
+# Job digest configuration for Michal Dub
+# Primary host: GitHub Actions on nyvlt000/ai-job-search-codex (weekly, Monday 07:00 CET)
 
 timezone: Europe/Berlin
 email:
