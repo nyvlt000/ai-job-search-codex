@@ -69,6 +69,42 @@ class DailyDigestHelpersTest(unittest.TestCase):
             )
         )
 
+    def test_fit_accepts_german_title_variants(self):
+        cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
+        keywords = daily_digest.fit_keyword_list(cfg)
+
+        def fit(title):
+            return daily_digest.passes_fit({"title": title}, keywords)
+
+        # Titles observed in live Basel / Freiburg results plus spelling variants.
+        for title in [
+            "Senior IT Projektmanager* (m/w/d)",
+            "IT-Projektmanager:in (m/w/d)",
+            "IT Projektmanagerin",
+            "Projektmanager*in IT",
+            "Projektleiter/in IT-Infrastruktur",
+            "Projektleitung IT (w/m/d)",
+            "(Senior) IT-Projektleiter Life Sciences (all genders)",
+            "Consultant / IT-Projektleiter im Gesundheitswesen (w/m/d)",
+            "Spezialist Contact Center & Genesys (m/w/d) - 50%",
+            "Contact-Center Architekt:in",
+            "Digitalisierungsmanager (m/w/d)",
+            "Manager Digitale Transformation",
+        ]:
+            self.assertTrue(fit(title), title)
+
+        for title in [
+            "Audit Projektmanager (m/w/d)",
+            "Kredit-Projektleiter",
+            "Projektmanager Italien",
+            "Senior Projektmanager:in (m/w/d)",
+            "Projektmanager:in AI/LLM (m/w/d)",
+            "Lead Customer Experience Specialist (d/m/w)",
+            "Contact Center Agent (m/w/d)",
+            "Teamlead SAP Consulting (d/m/w)",
+        ]:
+            self.assertFalse(fit(title), title)
+
     def test_location_filter_basel_and_freiburg_germany_only(self):
         cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
         # Location strings observed in live portal results.

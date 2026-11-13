@@ -81,13 +81,41 @@ def truncate(text: str, max_chars: int) -> str:
     return text[: max_chars - 1].rstrip() + "…"
 
 
+def normalize_fit_text(text: str) -> str:
+    """Lowercase and flatten spelling variants before keyword matching.
+
+    German gender markers are dropped ("Projektmanager:in" -> "projektmanager")
+    and hyphens become spaces ("IT-Projektleiter" -> "it projektleiter"), so one
+    keyword covers every spelling of the same title.
+    """
+    text = (text or "").lower()
+    text = re.sub(r"[:*/_]in(?:nen)?\b", "", text)
+    text = re.sub(r"[-\u2010-\u2015]", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def passes_fit(row: dict[str, Any], keywords: list[str]) -> bool:
+    """True when a keyword appears as whole words in the row text.
+
+    Whole-word matching keeps "it projektmanager" from matching
+    "Audit Projektmanager"; a trailing -in / -innen / -s is still accepted.
+    """
     if not keywords:
         return True
-    blob = " ".join(
-        str(row.get(k) or "") for k in ("title", "company", "location", "description")
-    ).lower()
-    return any(k.lower() in blob for k in keywords)
+    blob = normalize_fit_text(
+        " ".join(
+            str(row.get(k) or "")
+            for k in ("title", "company", "location", "description")
+        )
+    )
+    for keyword in keywords:
+        needle = normalize_fit_text(str(keyword))
+        if not needle:
+            continue
+        pattern = rf"(?<!\w){re.escape(needle)}(?:in|innen|s)?(?!\w)"
+        if re.search(pattern, blob):
+            return True
+    return False
 
 
 def location_allowed(location: str, cfg: dict[str, Any]) -> bool:

@@ -40,6 +40,8 @@ location_filter:
 
 # Must align with search phrases. Avoid broad terms like kundenkontakt /
 # bare "digital transformation" that let sales/HR roles into the digest.
+# Matching is on whole words in the job title; hyphens and German gender
+# markers are ignored, so "it projektmanager" also covers "IT-Projektmanager:in".
 fit_keywords:
 - conversational ai engineer
 - conversational ai
@@ -51,10 +53,23 @@ fit_keywords:
 - unified communications
 - unified communication
 - it project manager
-- it-projektleiter
 - it projektleiter
 - digital transformation manager
 - digital transformation it
+# German variants of the search phrases
+- it projektmanager
+- projektmanager it
+- projektleiter it
+- it projektleitung
+- projektleitung it
+- contact center spezialist
+- spezialist contact center
+- administrator contact center
+- contact center architekt
+- architekt contact center
+- manager digitale transformation
+- manager digital transformation
+- digitalisierungsmanager
 
 # Queries: Basel on all portals, Freiburg im Breisgau on LinkedIn only (the
 # Swiss boards do not cover Germany). No "Remote" searches: they return jobs
