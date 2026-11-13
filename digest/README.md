@@ -1,4 +1,4 @@
-# Weekly job digest
+# Daily job digest
 
 GitHub Actions scrapes **LinkedIn**, **jobs.ch**, and **JobScout24** for Michal Dub and emails HTML tables to `md@michaldub.com` via **Resend**.
 
@@ -6,9 +6,13 @@ GitHub Actions scrapes **LinkedIn**, **jobs.ch**, and **JobScout24** for Michal 
 
 | Role | Host | When |
 |------|------|------|
-| Primary | GitHub Actions (`daily-job-scrape.yml` on `nyvlt000/ai-job-search-codex`) | **Mondays 08:00 CET** — cron `0 7 * * 1` UTC (09:00 during CEST) |
+| Primary | GitHub Actions (`daily-job-scrape.yml` on `nyvlt000/ai-job-search-codex`) | **Every day 08:00 CET** — cron `0 7 * * *` UTC (09:00 during CEST) |
 
 PC Task Scheduler runners have been removed. Do not re-register `JobSearchDailyDigest`.
+
+## Locations
+
+Only jobs in **Basel** and **Freiburg im Breisgau (Germany)** reach the email. `location_filter` in `digest/config.yaml` checks every search result, because the portals also return the wider region. Basel is searched on all three portals; Freiburg on LinkedIn only, since the Swiss boards do not cover Germany and their "Freiburg" is Fribourg, Switzerland. There are no "Remote" searches.
 
 ## Setup (GitHub)
 

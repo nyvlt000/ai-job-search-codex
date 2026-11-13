@@ -57,6 +57,8 @@ class PortalResult:
     error: Optional[str] = None
     rows: list[DigestRow] = field(default_factory=list)
     searched: int = 0
+    skipped_location: int = 0
+    skipped_title: int = 0
 
 
 def load_config(path: Path) -> dict[str, Any]:
@@ -86,6 +88,27 @@ def passes_fit(row: dict[str, Any], keywords: list[str]) -> bool:
         str(row.get(k) or "") for k in ("title", "company", "location", "description")
     ).lower()
     return any(k.lower() in blob for k in keywords)
+
+
+def location_allowed(location: str, cfg: dict[str, Any]) -> bool:
+    """True when the job location passes digest/config.yaml `location_filter`.
+
+    No filter configured -> everything passes. With a filter, a job needs a
+    non-empty location that matches an `allow` pattern and no `deny` pattern.
+    `ignore` strings are removed first, so a region name such as the canton
+    "Basel-Country" does not count as the city of Basel.
+    """
+    lf = cfg.get("location_filter")
+    if not lf:
+        return True
+    text = (location or "").strip().lower()
+    if not text:
+        return False
+    for token in lf.get("ignore") or []:
+        text = text.replace(str(token).lower(), " ")
+    if any(re.search(str(p), text, re.IGNORECASE) for p in lf.get("deny") or []):
+        return False
+    return any(re.search(str(p), text, re.IGNORECASE) for p in lf.get("allow") or [])
 
 
 def search_phrases(cfg: dict[str, Any]) -> list[str]:
@@ -322,6 +345,8 @@ def enrich_portal(
     ttl = int(cfg.get("company_research_ttl_days", 30))
     cap = portal_detail_cap(cfg, portal_name)
     used = 0
+    skipped_location = 0
+    skipped_title = 0
 
     rows: list[DigestRow] = []
     for card in cards:
@@ -335,6 +360,12 @@ def enrich_portal(
         if key in seen["seen"]:
             continue
 
+        # Hard location gate: portals return the wider region (or the whole
+        # world for remote searches), so every result is checked here.
+        if not location_allowed(location, cfg):
+            skipped_location += 1
+            continue
+
         # Title must match a configured phrase/keyword first — description-only
         # hits (e.g. "Kundenkontakt" in sales ads) are too noisy for digests.
         title_fit = passes_fit(
@@ -342,6 +373,7 @@ def enrich_portal(
             keywords,
         )
         if not title_fit:
+            skipped_title += 1
             continue
 
         description = ""
@@ -389,7 +421,19 @@ def enrich_portal(
             "source": "cli",
         }
 
-    return PortalResult(name=portal_name, ok=True, searched=len(cards), rows=rows)
+    print(
+        f"[digest] {portal_name}: cards={len(cards)} kept={len(rows)} "
+        f"skipped_location={skipped_location} skipped_title={skipped_title}",
+        flush=True,
+    )
+    return PortalResult(
+        name=portal_name,
+        ok=True,
+        searched=len(cards),
+        rows=rows,
+        skipped_location=skipped_location,
+        skipped_title=skipped_title,
+    )
 
 
 def render_table(portal_name: str, rows: list[DigestRow]) -> str:
@@ -618,6 +662,8 @@ def run_digest(
         "portals": {
             r.name: {
                 "searched": r.searched,
+                "skipped_location": r.skipped_location,
+                "skipped_title": r.skipped_title,
                 "queries": query_stats_by.get(r.name, []),
                 "new": [asdict(row) for row in r.rows],
             }

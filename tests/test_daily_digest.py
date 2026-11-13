@@ -69,6 +69,90 @@ class DailyDigestHelpersTest(unittest.TestCase):
             )
         )
 
+    def test_location_filter_basel_and_freiburg_germany_only(self):
+        cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
+        # Location strings observed in live portal results.
+        keep = [
+            "Basel",
+            "Basel, Switzerland",
+            "Basel, Basel, Switzerland",
+            "Basel Metropolitan Area",
+            "Basel oder Olten",
+            "Basel, Zurich",
+            "Freiburg, Baden-Württemberg, Germany",
+            "Freiburg im Breisgau, Baden-Württemberg, Germany",
+            "Freiburg im Breisgau",
+            "Greater Freiburg Area",
+        ]
+        drop = [
+            "",
+            "Noida, Uttar Pradesh, India",
+            "Chennai, Tamil Nadu, India",
+            "Hyderabad, Telangana, India",
+            "Coppell, TX",
+            "Bern, Berne, Switzerland",
+            "Zurich, Zurich, Switzerland",
+            "Zürich",
+            "Liestal, Basel-Country, Switzerland",
+            "Olten, Solothurn, Switzerland",
+            "Allschwil",
+            "Offenburg, Baden-Württemberg, Germany",
+            "Weil am Rhein, Baden-Württemberg, Germany",
+            # Fribourg, Switzerland - "Freiburg" on the Swiss boards.
+            "Freiburg",
+            "Fribourg",
+            "Freiburg, Fribourg, Switzerland",
+        ]
+        for loc in keep:
+            self.assertTrue(daily_digest.location_allowed(loc, cfg), loc)
+        for loc in drop:
+            self.assertFalse(daily_digest.location_allowed(loc, cfg), loc)
+
+    def test_location_filter_absent_allows_all(self):
+        self.assertTrue(daily_digest.location_allowed("Chennai, India", {}))
+
+    def test_config_has_no_remote_or_swiss_freiburg_queries(self):
+        cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
+        for name, conf in cfg["portals"].items():
+            for q in conf["queries"]:
+                self.assertNotEqual(q["location"], "Remote", name)
+                self.assertNotIn("remote", q, name)
+                self.assertTrue(
+                    daily_digest.location_allowed(q["location"], cfg),
+                    f"{name}: query location {q['location']!r} can never pass the filter",
+                )
+
+    def test_enrich_portal_drops_out_of_area_cards(self):
+        from unittest import mock
+
+        cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
+        cards = [
+            {"id": "1", "title": "IT Project Manager", "company": "A",
+             "location": "Basel, Basel, Switzerland", "date": "2026-11-12",
+             "url": "https://example.com/1"},
+            {"id": "2", "title": "IT Project Manager", "company": "B",
+             "location": "Brisbane, Queensland, Australia", "date": "2026-11-12",
+             "url": "https://example.com/2"},
+            {"id": "3", "title": "Conversational AI Engineer", "company": "C",
+             "location": "Chennai, Tamil Nadu, India", "date": "2026-11-12",
+             "url": "https://example.com/3"},
+            {"id": "4", "title": "Digital Transformation Manager", "company": "D",
+             "location": "Freiburg, Baden-Württemberg, Germany", "date": "2026-11-12",
+             "url": "https://example.com/4"},
+        ]
+        with mock.patch.object(
+            daily_digest, "fetch_detail", return_value={"description": "Owns delivery"}
+        ) as detail, mock.patch.object(
+            daily_digest, "research_company", return_value="Test co"
+        ):
+            result = daily_digest.enrich_portal(
+                "linkedin-search", cards, cfg, {"seen": {}}
+            )
+        self.assertEqual([r.id for r in result.rows], ["1", "4"])
+        self.assertEqual(result.skipped_location, 2)
+        # Out-of-area jobs are rejected before any detail request is made.
+        self.assertEqual(detail.call_count, 2)
+
     def test_search_phrases_order(self):
         cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
         self.assertEqual(

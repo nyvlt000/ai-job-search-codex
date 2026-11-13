@@ -1,5 +1,5 @@
-# Weekly job digest configuration for Michal Dub
-# Primary host: GitHub Actions on nyvlt000/ai-job-search-codex (Mondays 08:00 CET)
+# Daily job digest configuration for Michal Dub
+# Primary host: GitHub Actions on nyvlt000/ai-job-search-codex (daily 08:00 CET)
 
 timezone: Europe/Berlin
 email:
@@ -17,6 +17,27 @@ portal_enrich_order:
 - jobs-ch-search
 - jobscout24-search
 - linkedin-search
+
+# Hard location gate applied to every search result (case-insensitive regex).
+# A job is kept only if its location matches an `allow` pattern and no `deny`
+# pattern. Only Basel and Freiburg im Breisgau (Germany) pass.
+location_filter:
+  # Removed before matching: the canton "Basel-Country" (Liestal, Pratteln, ...)
+  # is not the city of Basel.
+  ignore:
+  - basel-country
+  - basel-landschaft
+  - basel-land
+  - baselland
+  allow:
+  - '\bbasel\b'
+  # Freiburg needs a German marker: a bare "Freiburg" on the Swiss boards is
+  # Fribourg, Switzerland.
+  - '\bfreiburg\b.*(breisgau|baden|germany|deutschland)'
+  - '^greater freiburg area$'
+  deny:
+  - fribourg
+
 # Must align with search phrases. Avoid broad terms like kundenkontakt /
 # bare "digital transformation" that let sales/HR roles into the digest.
 fit_keywords:
@@ -34,6 +55,10 @@ fit_keywords:
 - it projektleiter
 - digital transformation manager
 - digital transformation it
+
+# Queries: Basel on all portals, Freiburg im Breisgau on LinkedIn only (the
+# Swiss boards do not cover Germany). No "Remote" searches: they return jobs
+# from all over the world.
 portals:
   linkedin-search:
     cli: .agents/skills/linkedin-search/cli/src/cli.ts
@@ -74,30 +99,6 @@ portals:
     - query: Digital Transformation Manager
       location: Freiburg im Breisgau, Germany
       limit: 10
-    - query: Conversational AI Engineer
-      location: Remote
-      limit: 10
-      remote: remote
-    - query: Contact Center Administrator
-      location: Remote
-      limit: 10
-      remote: remote
-    - query: Contact Center Architect
-      location: Remote
-      limit: 10
-      remote: remote
-    - query: Unified Communications Engineer
-      location: Remote
-      limit: 10
-      remote: remote
-    - query: IT Project Manager
-      location: Remote
-      limit: 10
-      remote: remote
-    - query: Digital Transformation Manager
-      location: Remote
-      limit: 10
-      remote: remote
   jobs-ch-search:
     cli: .agents/skills/jobs-ch-search/cli/src/cli.ts
     lang: en
@@ -120,42 +121,6 @@ portals:
     - query: Digital Transformation Manager
       location: Basel
       limit: 10
-    - query: Conversational AI Engineer
-      location: Freiburg
-      limit: 10
-    - query: Contact Center Administrator
-      location: Freiburg
-      limit: 10
-    - query: Contact Center Architect
-      location: Freiburg
-      limit: 10
-    - query: Unified Communications Engineer
-      location: Freiburg
-      limit: 10
-    - query: IT Project Manager
-      location: Freiburg
-      limit: 10
-    - query: Digital Transformation Manager
-      location: Freiburg
-      limit: 10
-    - query: Conversational AI Engineer
-      location: Remote
-      limit: 10
-    - query: Contact Center Administrator
-      location: Remote
-      limit: 10
-    - query: Contact Center Architect
-      location: Remote
-      limit: 10
-    - query: Unified Communications Engineer
-      location: Remote
-      limit: 10
-    - query: IT Project Manager
-      location: Remote
-      limit: 10
-    - query: Digital Transformation Manager
-      location: Remote
-      limit: 10
   jobscout24-search:
     cli: .agents/skills/jobscout24-search/cli/src/cli.ts
     lang: de
@@ -177,40 +142,4 @@ portals:
       limit: 10
     - query: Digital Transformation Manager
       location: Basel
-      limit: 10
-    - query: Conversational AI Engineer
-      location: Freiburg
-      limit: 10
-    - query: Contact Center Administrator
-      location: Freiburg
-      limit: 10
-    - query: Contact Center Architect
-      location: Freiburg
-      limit: 10
-    - query: Unified Communications Engineer
-      location: Freiburg
-      limit: 10
-    - query: IT Project Manager
-      location: Freiburg
-      limit: 10
-    - query: Digital Transformation Manager
-      location: Freiburg
-      limit: 10
-    - query: Conversational AI Engineer
-      location: Remote
-      limit: 10
-    - query: Contact Center Administrator
-      location: Remote
-      limit: 10
-    - query: Contact Center Architect
-      location: Remote
-      limit: 10
-    - query: Unified Communications Engineer
-      location: Remote
-      limit: 10
-    - query: IT Project Manager
-      location: Remote
-      limit: 10
-    - query: Digital Transformation Manager
-      location: Remote
       limit: 10
