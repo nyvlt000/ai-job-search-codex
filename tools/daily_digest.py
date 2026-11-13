@@ -88,6 +88,32 @@ def passes_fit(row: dict[str, Any], keywords: list[str]) -> bool:
     return any(k.lower() in blob for k in keywords)
 
 
+def search_phrases(cfg: dict[str, Any]) -> list[str]:
+    """Unique search phrases from config, in first-seen order."""
+    phrases: list[str] = []
+    for conf in (cfg.get("portals") or {}).values():
+        for q in conf.get("queries") or []:
+            p = str(q.get("query") or "").strip()
+            if p and p not in phrases:
+                phrases.append(p)
+    return phrases
+
+
+def fit_keyword_list(cfg: dict[str, Any]) -> list[str]:
+    """Prefer exact configured phrases, then extra fit_keywords anchors."""
+    phrases = [p.lower() for p in search_phrases(cfg)]
+    extras = [
+        str(k).strip().lower()
+        for k in (cfg.get("fit_keywords") or [])
+        if str(k).strip()
+    ]
+    out = list(phrases)
+    for k in extras:
+        if k not in out:
+            out.append(k)
+    return out
+
+
 def run_bun_cli(cli_rel: str, args: list[str], timeout: int = 120) -> dict[str, Any]:
     cli_path = REPO_ROOT / cli_rel
     if not cli_path.exists():
@@ -291,7 +317,7 @@ def enrich_portal(
     conf = cfg["portals"][portal_name]
     cli = conf["cli"]
     lang = conf.get("lang", "en")
-    keywords = cfg.get("fit_keywords") or []
+    keywords = fit_keyword_list(cfg)
     max_desc = int(cfg.get("description_max_chars", 800))
     ttl = int(cfg.get("company_research_ttl_days", 30))
     cap = portal_detail_cap(cfg, portal_name)
@@ -309,12 +335,17 @@ def enrich_portal(
         if key in seen["seen"]:
             continue
 
-        title_fit = passes_fit({**card, "description": ""}, keywords)
+        # Title must match a configured phrase/keyword first — description-only
+        # hits (e.g. "Kundenkontakt" in sales ads) are too noisy for digests.
+        title_fit = passes_fit(
+            {"title": title, "company": "", "location": "", "description": ""},
+            keywords,
+        )
+        if not title_fit:
+            continue
 
         description = ""
-        # Fetch detail when title already fits, or when we still have budget to
-        # re-check fit against the description (DE titles on jobs.ch).
-        if used < cap and job_id and (title_fit or keywords):
+        if used < cap and job_id:
             try:
                 detail = fetch_detail(
                     portal_name,
@@ -330,11 +361,6 @@ def enrich_portal(
                 used += 1
             except PortalQualityError:
                 description = ""
-
-        if not title_fit and not passes_fit(
-            {**card, "description": description}, keywords
-        ):
-            continue
 
         if not description:
             # Quality: included rows need a description.
@@ -465,10 +491,14 @@ def write_heartbeat(day: str, dry_run: bool) -> Path:
     return path
 
 
-def collect_cards(portal_name: str, cfg: dict[str, Any], jobage: int) -> list[dict[str, Any]]:
+def collect_cards(
+    portal_name: str, cfg: dict[str, Any], jobage: int
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Run every configured query; return (deduped cards, per-query stats)."""
     conf = cfg["portals"][portal_name]
     cli = conf["cli"]
     collected: dict[str, dict[str, Any]] = {}
+    query_stats: list[dict[str, Any]] = []
     for q in conf["queries"]:
         args = [
             "search",
@@ -491,11 +521,28 @@ def collect_cards(portal_name: str, cfg: dict[str, Any], jobage: int) -> list[di
         payload = run_bun_cli(cli, args)
         if "results" not in payload or not isinstance(payload["results"], list):
             raise PortalQualityError(f"{portal_name}: invalid search payload")
-        for item in payload["results"]:
+        results = payload["results"]
+        query_stats.append(
+            {
+                "query": q["query"],
+                "location": q.get("location"),
+                "result_count": len(results),
+            }
+        )
+        print(
+            f"[digest] {portal_name}: query={q['query']!r} "
+            f"location={q.get('location')!r} results={len(results)}",
+            flush=True,
+        )
+        for item in results:
             url = item.get("url") or ""
             key = url or f"{item.get('company')}|{item.get('title')}|{item.get('id')}"
-            collected[key] = item
-    return list(collected.values())
+            if key not in collected:
+                tagged = dict(item)
+                tagged["_search_query"] = q["query"]
+                tagged["_search_location"] = q.get("location")
+                collected[key] = tagged
+    return list(collected.values()), query_stats
 
 
 def run_digest(
@@ -521,9 +568,16 @@ def run_digest(
         raise PortalQualityError("No portals configured in digest/config.yaml")
 
     cards_by: dict[str, list[dict[str, Any]]] = {}
+    query_stats_by: dict[str, list[dict[str, Any]]] = {}
+    print(
+        f"[digest] configured phrases: {search_phrases(cfg)}",
+        flush=True,
+    )
     for name in portal_names:
         try:
-            cards_by[name] = collect_cards(name, cfg, jobage)
+            cards, qstats = collect_cards(name, cfg, jobage)
+            cards_by[name] = cards
+            query_stats_by[name] = qstats
         except PortalQualityError as exc:
             errors.append(f"{name}: {exc}")
 
@@ -560,9 +614,11 @@ def run_digest(
     payload: dict[str, Any] = {
         "date": day,
         "source": source,
+        "phrases": search_phrases(cfg),
         "portals": {
             r.name: {
                 "searched": r.searched,
+                "queries": query_stats_by.get(r.name, []),
                 "new": [asdict(row) for row in r.rows],
             }
             for r in results

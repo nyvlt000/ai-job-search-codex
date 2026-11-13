@@ -33,21 +33,54 @@ class DailyDigestHelpersTest(unittest.TestCase):
     def test_passes_fit(self):
         self.assertTrue(
             daily_digest.passes_fit(
-                {"title": "Digital Transformation Project Manager", "company": "X"},
-                ["project manager", "contact center"],
+                {"title": "Digital Transformation Manager", "company": "X"},
+                ["digital transformation manager", "contact center"],
             )
         )
         self.assertTrue(
             daily_digest.passes_fit(
-                {"title": "IT-Projektleiter (m/w/d)", "company": "Acme"},
-                ["projektleiter", "project manager"],
+                {"title": "IT Project Manager", "company": "Acme"},
+                ["it project manager"],
             )
         )
         self.assertFalse(
             daily_digest.passes_fit(
                 {"title": "Junior Barista", "company": "Cafe"},
-                ["project manager", "contact center"],
+                ["it project manager", "contact center"],
             )
+        )
+
+    def test_fit_rejects_sales_kundenkontakt_noise(self):
+        cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
+        keywords = daily_digest.fit_keyword_list(cfg)
+        self.assertFalse(
+            daily_digest.passes_fit(
+                {
+                    "title": "Mitarbeiter:in Vertriebssupport",
+                    "description": "Freude am Kundenkontakt und MS Office",
+                },
+                keywords,
+            )
+        )
+        self.assertTrue(
+            daily_digest.passes_fit(
+                {"title": "IT Project Manager – Healthcare", "description": ""},
+                keywords,
+            )
+        )
+
+    def test_search_phrases_order(self):
+        cfg = daily_digest.load_config(ROOT / "digest" / "config.yaml")
+        self.assertEqual(
+            daily_digest.search_phrases(cfg),
+            [
+                "Conversational AI Engineer",
+                "Contact Center Administrator",
+                "Contact Center Architect",
+                "Unified Communications Engineer",
+                "IT Project Manager",
+                "Digital Transformation Manager",
+            ],
         )
 
     def test_portal_detail_cap(self):
@@ -226,7 +259,7 @@ portals:
 """
 
         def fake_collect(name, cfg, jobage):
-            return [
+            cards = [
                 {
                     "id": f"{name}-1",
                     "title": "Project Manager",
@@ -236,6 +269,14 @@ portals:
                     "url": f"https://example.com/{name}/1",
                 }
             ]
+            stats = [
+                {
+                    "query": cfg["portals"][name]["queries"][0]["query"],
+                    "location": "Basel",
+                    "result_count": 1,
+                }
+            ]
+            return cards, stats
 
         def fake_enrich(name, cards, cfg, seen):
             rows = [

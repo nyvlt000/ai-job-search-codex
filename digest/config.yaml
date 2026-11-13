@@ -17,28 +17,23 @@ portal_enrich_order:
 - jobs-ch-search
 - jobscout24-search
 - linkedin-search
+# Must align with search phrases. Avoid broad terms like kundenkontakt /
+# bare "digital transformation" that let sales/HR roles into the digest.
 fit_keywords:
-- conversational ai
 - conversational ai engineer
+- conversational ai
 - contact center administrator
 - contact center architect
-- contact center
-- contact centre
+- contact center project
 - ccaas
+- unified communications engineer
 - unified communications
 - unified communication
 - it project manager
+- it-projektleiter
+- it projektleiter
 - digital transformation manager
-- digital transformation
-- cloud migration
-- cloud-migration
-- kundenservice
-- kundenkontakt
-- microsoft 365
-- microsoft teams
-- intranet
-- it-projekt
-- it projekt
+- digital transformation it
 portals:
   linkedin-search:
     cli: .agents/skills/linkedin-search/cli/src/cli.ts
