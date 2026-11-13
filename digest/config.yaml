@@ -1,15 +1,11 @@
-# Daily job digest configuration for Michal Dub
-# Primary host: GitHub Actions on nyvlt000/ai-job-search-codex (08:00 Europe/Berlin intent)
+# Weekly job digest configuration for Michal Dub
+# Primary host: GitHub Actions on nyvlt000/ai-job-search-codex (Mondays 08:00 CET)
 
 timezone: Europe/Berlin
 email:
   to: md@michaldub.com
-  # Verified Resend sender. Override with env RESEND_FROM if set.
-  from: "Job Digest <onboarding@resend.dev>"
-  # Credentials (never commit): RESEND_API_KEY, RESEND_FROM
-
+  from: Job Digest <onboarding@resend.dev>
 jobage_days: 30
-# Per-portal detail budgets so one board cannot starve the others.
 detail_fetch_cap: 30
 detail_fetch_cap_per_portal:
   linkedin-search: 20
@@ -17,99 +13,209 @@ detail_fetch_cap_per_portal:
   jobscout24-search: 20
 description_max_chars: 800
 company_research_ttl_days: 30
-
-# Enrichment order: Swiss boards first, then LinkedIn.
 portal_enrich_order:
-  - jobs-ch-search
-  - jobscout24-search
-  - linkedin-search
-
+- jobs-ch-search
+- jobscout24-search
+- linkedin-search
 fit_keywords:
-  - project manager
-  - program manager
-  - digital transformation
-  - cloud migration
-  - contact center
-  - ccaas
-  - unified communications
-  - conversational ai
-  - microsoft 365
-  - teams
-  - stakeholder
-  - intranet
-  # German / CH title variants
-  - projektleiter
-  - projektmanager
-  - projektleitung
-  - programmmanager
-  - digitale transformation
-  - contact centre
-  - kundenservice
-  - kundenkontakt
-  - unified communication
-  - cloud-migration
-  - it-projekt
-
+- conversational ai
+- conversational ai engineer
+- contact center administrator
+- contact center architect
+- contact center
+- contact centre
+- ccaas
+- unified communications
+- unified communication
+- it project manager
+- digital transformation manager
+- digital transformation
+- cloud migration
+- cloud-migration
+- kundenservice
+- kundenkontakt
+- microsoft 365
+- microsoft teams
+- intranet
+- it-projekt
+- it projekt
 portals:
   linkedin-search:
     cli: .agents/skills/linkedin-search/cli/src/cli.ts
     queries:
-      - query: "Project Manager"
-        location: "Basel, Switzerland"
-        limit: 10
-      - query: "Project Manager"
-        location: "Freiburg im Breisgau, Germany"
-        limit: 10
-      - query: "Digital Transformation"
-        location: "Basel, Switzerland"
-        limit: 10
-      - query: "Contact Center"
-        location: "Basel, Switzerland"
-        limit: 10
-      - query: "Cloud Migration"
-        location: "Basel, Switzerland"
-        limit: 10
-      - query: "Unified Communications"
-        location: "Remote"
-        limit: 10
-        remote: remote
-
+    - query: Conversational AI Engineer
+      location: Basel, Switzerland
+      limit: 10
+    - query: Contact Center Administrator
+      location: Basel, Switzerland
+      limit: 10
+    - query: Contact Center Architect
+      location: Basel, Switzerland
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Basel, Switzerland
+      limit: 10
+    - query: IT Project Manager
+      location: Basel, Switzerland
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Basel, Switzerland
+      limit: 10
+    - query: Conversational AI Engineer
+      location: Freiburg im Breisgau, Germany
+      limit: 10
+    - query: Contact Center Administrator
+      location: Freiburg im Breisgau, Germany
+      limit: 10
+    - query: Contact Center Architect
+      location: Freiburg im Breisgau, Germany
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Freiburg im Breisgau, Germany
+      limit: 10
+    - query: IT Project Manager
+      location: Freiburg im Breisgau, Germany
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Freiburg im Breisgau, Germany
+      limit: 10
+    - query: Conversational AI Engineer
+      location: Remote
+      limit: 10
+      remote: remote
+    - query: Contact Center Administrator
+      location: Remote
+      limit: 10
+      remote: remote
+    - query: Contact Center Architect
+      location: Remote
+      limit: 10
+      remote: remote
+    - query: Unified Communications Engineer
+      location: Remote
+      limit: 10
+      remote: remote
+    - query: IT Project Manager
+      location: Remote
+      limit: 10
+      remote: remote
+    - query: Digital Transformation Manager
+      location: Remote
+      limit: 10
+      remote: remote
   jobs-ch-search:
     cli: .agents/skills/jobs-ch-search/cli/src/cli.ts
     lang: en
     queries:
-      - query: "project manager"
-        location: "Basel"
-        limit: 10
-      - query: "Projektleiter"
-        location: "Basel"
-        limit: 10
-      - query: "digital transformation"
-        location: "Basel"
-        limit: 10
-      - query: "contact center"
-        location: "Basel"
-        limit: 10
-      - query: "Projektmanager"
-        location: "Basel"
-        limit: 10
-
+    - query: Conversational AI Engineer
+      location: Basel
+      limit: 10
+    - query: Contact Center Administrator
+      location: Basel
+      limit: 10
+    - query: Contact Center Architect
+      location: Basel
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Basel
+      limit: 10
+    - query: IT Project Manager
+      location: Basel
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Basel
+      limit: 10
+    - query: Conversational AI Engineer
+      location: Freiburg
+      limit: 10
+    - query: Contact Center Administrator
+      location: Freiburg
+      limit: 10
+    - query: Contact Center Architect
+      location: Freiburg
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Freiburg
+      limit: 10
+    - query: IT Project Manager
+      location: Freiburg
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Freiburg
+      limit: 10
+    - query: Conversational AI Engineer
+      location: Remote
+      limit: 10
+    - query: Contact Center Administrator
+      location: Remote
+      limit: 10
+    - query: Contact Center Architect
+      location: Remote
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Remote
+      limit: 10
+    - query: IT Project Manager
+      location: Remote
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Remote
+      limit: 10
   jobscout24-search:
     cli: .agents/skills/jobscout24-search/cli/src/cli.ts
     lang: de
     queries:
-      - query: "project manager"
-        location: "Basel"
-        limit: 10
-      - query: "Projektleiter"
-        location: "Basel"
-        limit: 10
-      - query: "digital transformation"
-        location: "Basel"
-        limit: 10
-      - query: "contact center"
-        location: "Basel"
-        limit: 10
-      - query: "Projektmanager"
-        location: "Basel"
-        limit: 10
+    - query: Conversational AI Engineer
+      location: Basel
+      limit: 10
+    - query: Contact Center Administrator
+      location: Basel
+      limit: 10
+    - query: Contact Center Architect
+      location: Basel
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Basel
+      limit: 10
+    - query: IT Project Manager
+      location: Basel
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Basel
+      limit: 10
+    - query: Conversational AI Engineer
+      location: Freiburg
+      limit: 10
+    - query: Contact Center Administrator
+      location: Freiburg
+      limit: 10
+    - query: Contact Center Architect
+      location: Freiburg
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Freiburg
+      limit: 10
+    - query: IT Project Manager
+      location: Freiburg
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Freiburg
+      limit: 10
+    - query: Conversational AI Engineer
+      location: Remote
+      limit: 10
+    - query: Contact Center Administrator
+      location: Remote
+      limit: 10
+    - query: Contact Center Architect
+      location: Remote
+      limit: 10
+    - query: Unified Communications Engineer
+      location: Remote
+      limit: 10
+    - query: IT Project Manager
+      location: Remote
+      limit: 10
+    - query: Digital Transformation Manager
+      location: Remote
+      limit: 10

@@ -1,4 +1,4 @@
-# Daily job digest
+# Weekly job digest
 
 GitHub Actions scrapes **LinkedIn**, **jobs.ch**, and **JobScout24** for Michal Dub and emails HTML tables to `md@michaldub.com` via **Resend**.
 
@@ -6,7 +6,7 @@ GitHub Actions scrapes **LinkedIn**, **jobs.ch**, and **JobScout24** for Michal 
 
 | Role | Host | When |
 |------|------|------|
-| Primary | GitHub Actions (`daily-job-scrape.yml` on `nyvlt000/ai-job-search-codex`) | Cron `0 7 * * *` UTC ≈ **08:00 Europe/Berlin** in winter (09:00 in CEST) |
+| Primary | GitHub Actions (`daily-job-scrape.yml` on `nyvlt000/ai-job-search-codex`) | **Mondays 08:00 CET** — cron `0 7 * * 1` UTC (09:00 during CEST) |
 
 PC Task Scheduler runners have been removed. Do not re-register `JobSearchDailyDigest`.
 
